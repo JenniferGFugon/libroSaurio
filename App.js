@@ -11,8 +11,8 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="mainScreen">
-        <Stack.Screen name="mainScreeen" component={mainScreen} />
+        <Stack.Navigator initialRouteName="mainScreen" headerMode = 'none'>
+        <Stack.Screen name="mainScreen" component={mainScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     )
@@ -21,7 +21,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
   },
