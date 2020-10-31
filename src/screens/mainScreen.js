@@ -23,8 +23,8 @@ import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
 const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
 
-
   const mainScreen = ({ navigation }) => { 
+<<<<<<< HEAD
      
     const [books, setBooks] = useState(null);
     const [error, setError] = useState(false);
@@ -62,6 +62,10 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
     return (
 
         <Container>
+=======
+      return (
+        <Container style={{backgroundColor: '#2da144'}}>
+>>>>>>> f6914b5116291f41ec3fc1e4d45af2678560499c
             <Header >
             <Left>
             <Thumbnail square small source={require("../../assets/logo.jpg")} />
