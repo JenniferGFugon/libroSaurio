@@ -20,11 +20,9 @@ import {
   
 } from "native-base";
 
-
   const mainScreen = ({ navigation }) => { 
       return (
-
-        <Container>
+        <Container style={{backgroundColor: '#2da144'}}>
             <Header >
             <Left>
             <Thumbnail square small source={require("../../assets/logo.jpg")} />

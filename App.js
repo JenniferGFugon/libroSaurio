@@ -3,13 +3,14 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
  import mainScreen from "./src/screens/mainScreen";
 
- import { NavigationContainer } from '@react-navigation/native';
+ import { NavigationContainer} from '@react-navigation/native';
  import { createStackNavigator } from "@react-navigation/stack";
 
  const Stack = createStackNavigator();
 
 export default function App() {
   return (
+    
       <NavigationContainer>
         <Stack.Navigator initialRouteName="mainScreen" headerMode = 'none'>
         <Stack.Screen name="mainScreen" component={mainScreen} />
