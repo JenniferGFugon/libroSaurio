@@ -1,8 +1,9 @@
-import { Container } from "native-base";
+import { Container, Right } from "native-base";
 import React, { useEffect, useState } from "react";
 
 import react from "react";
-import { StyleSheet, Text, View } from 'react-native';
+
+import { StyleSheet, Text, View, Image, Dimensions,FlatList } from "react-native";
 import {
   Input,
   Item,
@@ -21,26 +22,26 @@ import {
 } from "native-base";
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
+const { width, height } = Dimensions.get("window");
+
 const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
 
   const mainScreen = ({ navigation }) => { 
-<<<<<<< HEAD
      
     const [books, setBooks] = useState(null);
     const [error, setError] = useState(false);
     const [search, setSearch] = useState("");
 
 
-    function getBooks() {
+    async function getBooks() {
         try {
-          const response = await backend.get(`${apiUrl}?category=libros_programacion&criteria=featured`);
+          const response = await backend.get(`${apiUrl}?category=libros_programacion&criteria=featured&lang=spanish`);
     
           setBooks(response.data);
         } catch (error) {
           setError(true);
         }
       }
-    
     // Hook de efecto
     useEffect(() => {
         getBooks();
@@ -59,13 +60,9 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
     
     
     
-    return (
 
-        <Container>
-=======
       return (
         <Container style={{backgroundColor: '#2da144'}}>
->>>>>>> f6914b5116291f41ec3fc1e4d45af2678560499c
             <Header >
             <Left>
             <Thumbnail square small source={require("../../assets/logo.jpg")} />
@@ -74,11 +71,46 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
             <Body>
                 <Text>libroSaurio</Text>
             </Body>
-        
+            <Right>
+              <Button icon>
+                <Icon name="search" />
+            </Button>
+            </Right>
             </Header>
-            <Body>
+            
                 <Text style = {styles.text} > TOPS EN PROGRAMACION </Text>
-            </Body>
+                <FlatList
+                  data={books}
+                  keyExtractor={(item) => {
+                    return item.ID;
+                  }}
+                  ListEmptyComponent={<Text>¡No se han encontrado libros!</Text>}
+                  renderItem={({ item }) => {
+                    return (
+                      <View>
+                        <Card >
+                        <CardItem header bordered>
+                            <H3>{item.title}</H3>
+                        </CardItem>                          
+                          <CardItem cardBody bordered>
+                          <Body>
+                            <Image  source={{ uri: `${item.cover}` }} style={styles.bookImage} />
+                         </Body>
+                          </CardItem> 
+                         
+                          <CardItem footer bordered>
+                            <Text> {item.pages} Paginas</Text>
+                            <Right>
+                            <Text> Autor:{item.author}</Text>
+                            </Right>
+                         </CardItem>
+                         
+                         
+                        </Card>
+                    </View>
+                    )
+                  }}
+                />
         
         </Container>
       )
@@ -98,7 +130,12 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
         marginTop: 5,
         textAlign: "center"
     
-    }
+    },
+    bookImage: {
+      width: width * 0.99,
+      height: height * 0.57,
+      
+    },
    
   });
 
