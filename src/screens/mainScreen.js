@@ -64,18 +64,17 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
       return (
         <Container style={{backgroundColor: '#2da144'}}>
             <Header >
-            <Left>
-            <Thumbnail square small source={require("../../assets/logo.jpg")} />
-
-            </Left>
-            <Body>
-                <Text>libroSaurio</Text>
-            </Body>
-            <Right>
-              <Button icon onPress={() => {navigation.navigate("searchScreen")}}>
-                <Icon name="search" />
-            </Button>
-            </Right>
+              <Left>
+                <Image  source={require("../../assets/logo_computadora.png")} style={styles.logoImage} />
+              </Left>
+              <Body>
+                <Image  source={require("../../assets/logo_letras.png")} style={styles.letrasImage} />
+              </Body>
+              <Right>
+                <Button icon onPress={() => {navigation.navigate("searchScreen")}}>
+                  <Icon name="search" />
+                </Button>
+              </Right>
             </Header>
             
                 <Text style = {styles.text} > TOPS EN PROGRAMACION </Text>
@@ -114,8 +113,7 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
         
         </Container>
       )
-   };
-
+  };
 
 
    const styles = StyleSheet.create({
@@ -125,7 +123,7 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
     },
 
     text: {
-        fontFamily: 'serif',
+        fontFamily: 'Arial',
         fontSize: 25,
         marginTop: 5,
         textAlign: "center"
@@ -135,6 +133,16 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
       width: width * 0.99,
       height: height * 0.57,
       
+    },
+
+    letrasImage: {
+      width: 145,
+      height: 23,
+    },
+
+    logoImage: {
+      width: 50,
+      height: 43,
     },
    
   });
