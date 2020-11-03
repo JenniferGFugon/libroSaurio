@@ -72,7 +72,7 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
                 <Text>libroSaurio</Text>
             </Body>
             <Right>
-              <Button icon>
+              <Button icon onPress={() => {navigation.navigate("searchScreen")}}>
                 <Icon name="search" />
             </Button>
             </Right>
