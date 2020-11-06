@@ -22,6 +22,7 @@ import {
 } from "native-base";
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
+import { color, greaterThan } from "react-native-reanimated";
 const { width, height } = Dimensions.get("window");
 
 const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
@@ -50,20 +51,16 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
   if (!books) {
     return (
       <View style={{flex: 1, justifyContent: "center"}}>
-        <Spinner color="blue" />
+        <Spinner color="green" />
       </View>
     )
   }
 
     
-    
-    
-    
-    
 
       return (
-        <Container style={{backgroundColor: '#2da144'}}>
-            <Header >
+        <Container  style={{backgroundColor: '#28332b'}}>
+            <Header style={styles.header} >
               <Left>
                 <Image  source={require("../../assets/logo_computadora.png")} style={styles.logoImage} />
               </Left>
@@ -71,9 +68,7 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
                 <Image  source={require("../../assets/logo_letras.png")} style={styles.letrasImage} />
               </Body>
               <Right>
-                <Button icon onPress={() => {navigation.navigate("searchScreen")}}>
-                  <Icon name="search" />
-                </Button>
+                <Icon name="menu" style={styles.icono} onPress={() => {navigation.navigate("searchScreen")}} />
               </Right>
             </Header>
             
@@ -89,7 +84,7 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
                       <View>
                         <Card >
                         <CardItem header bordered>
-                            <H3>{item.title}</H3>
+                            <H3 style={styles.tituloApi}>{item.title}</H3>
                         </CardItem>                          
                           <CardItem cardBody bordered>
                           <Body>
@@ -104,7 +99,6 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
                             </Right>
                          </CardItem>
                          
-                         
                         </Card>
                     </View>
                     )
@@ -115,24 +109,32 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
       )
   };
 
-
    const styles = StyleSheet.create({
     header: {
-      flex: 1,
-      backgroundColor: '#1B241D',
+      backgroundColor: '#fff',
     },
 
     text: {
-        fontFamily: 'Arial',
-        fontSize: 25,
-        marginTop: 5,
-        textAlign: "center"
-    
+      fontFamily: 'Times New Roman',
+      fontSize: 25,
+      fontWeight: "bold",
+      marginTop: 20,
+      marginBottom: 10,
+      textAlign: "center",
+      color: "#fff"
     },
+
+    tituloApi: {
+      fontFamily: 'Times New Roman',
+      fontSize: 19,
+      fontWeight: "bold",
+      
+      justifyContent: "center"
+    },
+
     bookImage: {
       width: width * 0.99,
-      height: height * 0.57,
-      
+      height: height * 0.75,
     },
 
     letrasImage: {
@@ -142,11 +144,15 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
 
     logoImage: {
       width: 50,
-      height: 43,
+      height: 33,
     },
+
+    icono: {
+      color: "green",
+      margin: 10,
+    }
    
   });
-
 
 export default mainScreen;
     

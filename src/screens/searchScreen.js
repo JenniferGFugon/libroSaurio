@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 
 import { StyleSheet, Text, View, Image, Dimensions,FlatList, ImageBackground } from "react-native";
 import {Input, Title, Item, H1, Button, Header, Icon, Spinner, Card, CardItem, H3, Body, Left, Thumbnail} from "native-base";
-import { withSafeAreaInsets } from "react-native-safe-area-context";
+
 /*import backend from "../api/backend";
 import getEnvVars from "../../enviroment";*/
 const { width, height } = Dimensions.get("window");
@@ -13,14 +13,14 @@ const searchScreen = ({ navigation }) => {
     
     return (
         <Container>
-            <Header>
+            <Header style={styles.header}>
                 <Right> 
                     <Item>
                         <Input placeholder="Buscar"/>
                     </Item>
                 </Right>
-            <Button>
-                <Text>Aqui va Icono</Text>
+            <Button style={styles.boton} onPress={() => {navigation.navigate("infoScreen")}}>
+                <Icon name="search" style={styles.icono} />
             </Button>
           </Header>
           <Content>
@@ -44,6 +44,22 @@ const styles = StyleSheet.create({
        color: '#f2f2f2',
        textAlign: "center",
     },
+
+    icono: {
+        width: 19, 
+    },
+
+    boton:{
+        backgroundColor: "green",
+        width: 50,
+        height: 40,
+        marginTop: 5,
+    },
+
+    header: {
+        backgroundColor: '#fff',
+      },
    
   });
+
 export default searchScreen;
