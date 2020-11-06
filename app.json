@@ -8,7 +8,7 @@
     "splash": {
       "image": "./assets/logoo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ccffb5"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
