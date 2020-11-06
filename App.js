@@ -6,6 +6,7 @@ import mainScreen from "./src/screens/mainScreen";
 import { NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
 import searchScreen from './src/screens/searchScreen';
+import infoScreen from './src/screens/infoScreen';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +16,7 @@ export default function App() {
         <Stack.Navigator initialRouteName="mainScreen" headerMode = 'none'>
           <Stack.Screen name="mainScreen" component={mainScreen} />
           <Stack.Screen name="searchScreen" component={searchScreen} />
+          <Stack.Screen name="infoScreen" component={infoScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     )
