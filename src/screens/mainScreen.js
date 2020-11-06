@@ -106,21 +106,22 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
                       <View style={{backgroundColor: "black"}}>
                           <TouchableOpacity onPress={() => navigation.navigate("infoScreen")}>
                             <Card style={styles.card}>
-                              <CardItem header bordered style={{backgroundColor: "#0f630f"}}>
-                                  <H3 style={styles.tituloLibro}>{item.title}</H3>
-                              </CardItem>                          
+                                      
                                 <CardItem cardBody bordered>
-                                <Body>
+                                <Left header bordered style={{backgroundColor: "#0f630f"}}>
                                   <Image  source={{ uri: `${item.cover}` }} style={styles.bookImage} />
-                              </Body>
+                               </Left>                                      
+                               <Right >
+                                  <H3 style={styles.tituloLibro}>{item.title}</H3>
+                                  <Text style={styles.autoryPag} > {item.pages} Páginas</Text>
+                                  <Text style={styles.autoryPag}> Autor: {item.author}</Text>
+                                </Right>
+  
                                 </CardItem> 
                               
-                                <CardItem footer bordered>
-                                  <Text style={styles.autoryPag} > {item.pages} Páginas</Text>
-                                  <Right>
-                                  <Text style={styles.autoryPag}> Autor: {item.author}</Text>
-                                  </Right>
-                              </CardItem>
+                              
+                                 
+                         
                             
                             </Card>
                         </TouchableOpacity>
@@ -187,7 +188,7 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
       margin: 10,
     },
     card:{
-      width:width*0.40,
+      width:width*0.90,
       marginLeft:20,
     }
   });
