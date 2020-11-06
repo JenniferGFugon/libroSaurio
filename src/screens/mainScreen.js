@@ -59,20 +59,20 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
     
 
       return (
-        <Container  style={{backgroundColor: '#28332b'}}>
+        <Container  style={{backgroundColor: 'black'}}>
             <Header style={styles.header} >
               <Left>
-                <Image  source={require("../../assets/logo_computadora.png")} style={styles.logoImage} />
+                <Image source={require("../../assets/logo_computadora.png")} style={styles.logoImage} />
               </Left>
               <Body>
-                <Image  source={require("../../assets/logo_letras.png")} style={styles.letrasImage} />
+                <Image source={require("../../assets/logo_letras.png")} style={styles.letrasImage} />
               </Body>
               <Right>
                 <Icon name="menu" style={styles.icono} onPress={() => {navigation.navigate("searchScreen")}} />
               </Right>
             </Header>
             
-                <Text style = {styles.text} > TOPS EN PROGRAMACION </Text>
+                <Text style = {styles.text} > TOPS EN PROGRAMACIÓN </Text>
                 <FlatList
                   data={books}
                   keyExtractor={(item) => {
@@ -81,10 +81,10 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
                   ListEmptyComponent={<Text>¡No se han encontrado libros!</Text>}
                   renderItem={({ item }) => {
                     return (
-                      <View>
+                      <View style={{backgroundColor: "black"}}>
                         <Card >
-                        <CardItem header bordered>
-                            <H3 style={styles.tituloApi}>{item.title}</H3>
+                        <CardItem header bordered style={{backgroundColor: "#0f630f"}}>
+                            <H3 style={styles.tituloLibro}>{item.title}</H3>
                         </CardItem>                          
                           <CardItem cardBody bordered>
                           <Body>
@@ -93,9 +93,9 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
                           </CardItem> 
                          
                           <CardItem footer bordered>
-                            <Text> {item.pages} Paginas</Text>
+                            <Text style={styles.autoryPag} > {item.pages} Páginas</Text>
                             <Right>
-                            <Text> Autor:{item.author}</Text>
+                            <Text style={styles.autoryPag}> Autor: {item.author}</Text>
                             </Right>
                          </CardItem>
                          
@@ -121,15 +121,22 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
       marginTop: 20,
       marginBottom: 10,
       textAlign: "center",
-      color: "#fff"
+      color: "#fff",
+      backgroundColor: "#0f630f"
     },
 
-    tituloApi: {
+    tituloLibro: {
       fontFamily: 'Times New Roman',
       fontSize: 19,
       fontWeight: "bold",
+      justifyContent: "center",
+      color: "#fff"
+    },
+
+    autoryPag: {
+      fontFamily: 'Times New Roman',
+      fontSize: 16,
       
-      justifyContent: "center"
     },
 
     bookImage: {
