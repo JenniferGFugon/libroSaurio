@@ -1,8 +1,7 @@
-import { Container, Footer, Right } from "native-base";
+import { Container, Footer, Right,Drawer,SideBar } from "native-base";
 import React, { useEffect, useState } from "react";
-
-import react from "react";
-
+import {createDrawerNavigator,DrawerItems} from "react-navigation"
+import BaseDeDatos from "../screens/Categorias/baseScreen"
 import { StyleSheet, Text, View, Image, Dimensions,FlatList } from "react-native";
 import {
   Input,
@@ -22,14 +21,15 @@ import {
 } from "native-base";
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
-import { color, greaterThan } from "react-native-reanimated";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const { width, height } = Dimensions.get("window");
 
-const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
+const { apiUrl } = getEnvVars();
+
 
   const mainScreen = ({ navigation }) => { 
+    
      
     const [books, setBooks] = useState(null);
     const [error, setError] = useState(false);
@@ -37,8 +37,6 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
     const [searchError, setSearchError] = useState(false);
   
  
-
-    
 
     async function getBooks() {
         try {
@@ -53,7 +51,7 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
     useEffect(() => {
         getBooks();
     }, []);
-
+    
   if (!books) {
     return (
       <View style={{flex: 1, justifyContent: "center"}}>
@@ -76,11 +74,9 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
       return (
         <Container  style={{backgroundColor: 'black'}}>
             <Header style={styles.header} >
-              <Left>
+              <Left> 
                 <Image source={require("../../assets/logo_computadora.png")} style={styles.logoImage} />
               </Left>
-              
-              
                   <Right> 
                         <Item>
                             <Input placeholder="Buscar" value={search} onChangeText={setSearch} style={searchError ? styles.inputError : null} />
@@ -104,7 +100,7 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
                   renderItem={({ item }) => {
                     return (
                       <View style={{backgroundColor: "black"}}>
-                          <TouchableOpacity onPress={() => navigation.navigate("infoScreen")}>
+                          <TouchableOpacity onPress={() => navigation.navigate("infoScreen", {ID: item.ID})}>
                             <Card style={styles.card}>
                                       
                                 <CardItem cardBody bordered>
@@ -133,6 +129,7 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
               
         
         </Container>
+     
       )
   };
 
@@ -142,7 +139,7 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
     },
 
     text: {
-      fontFamily: 'Times New Roman',
+      fontFamily: "serif",
       fontSize: 25,
       fontWeight: "bold",
       marginTop: 20,
@@ -153,7 +150,7 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
     },
 
     tituloLibro: {
-      fontFamily: 'Times New Roman',
+      fontFamily: "serif",
       fontSize: 19,
       fontWeight: "bold",
       justifyContent: "center",
@@ -161,7 +158,7 @@ const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
     },
 
     autoryPag: {
-      fontFamily: 'Times New Roman',
+      fontFamily: "serif",
       fontSize: 16,
       
     },

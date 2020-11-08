@@ -44,7 +44,6 @@ const searchScreen = ({ route, navigation }) => {
       }
   
  
-    console.log(books);
 
  
     return (
@@ -63,7 +62,7 @@ const searchScreen = ({ route, navigation }) => {
                   renderItem={({ item }) => {
                     return (
                       <View >
-                          <TouchableOpacity onPress={() => navigation.navigate("infoScreen")}>
+                          <TouchableOpacity onPress={() => navigation.navigate("infoScreen", {ID: item.ID})}>
                             <Card >
                               <CardItem header bordered style={{backgroundColor: "#0f630f"}}>
                                   <H3 style={styles.tituloLibro}>{item.title}</H3>
