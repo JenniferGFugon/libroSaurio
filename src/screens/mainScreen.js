@@ -1,7 +1,6 @@
 import { Container, Footer, Right,Drawer,SideBar } from "native-base";
 import React, { useEffect, useState } from "react";
-import {createDrawerNavigator,DrawerItems} from "react-navigation"
-import BaseDeDatos from "../screens/Categorias/baseScreen"
+
 import { StyleSheet, Text, View, Image, Dimensions,FlatList } from "react-native";
 import {
   Input,
@@ -22,7 +21,6 @@ import {
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
 import { TouchableOpacity } from "react-native-gesture-handler";
-
 const { width, height } = Dimensions.get("window");
 
 const { apiUrl } = getEnvVars();
@@ -32,10 +30,11 @@ const { apiUrl } = getEnvVars();
     
      
     const [books, setBooks] = useState(null);
+
     const [error, setError] = useState(false);
     const [search, setSearch] = useState("");
     const [searchError, setSearchError] = useState(false);
-  
+    const categoryId = [1,2,3,4,5,6];
  
 
     async function getBooks() {
@@ -91,7 +90,10 @@ const { apiUrl } = getEnvVars();
             </Header>
                  <Image source={require("../../assets/logo_letras.png")} style={styles.letrasImage}/>
                 <Text style = {styles.text} > TOPS EN PROGRAMACIÓN </Text>
+
                 <FlatList
+                  horizontal={true}
+                  
                   data={books}
                   keyExtractor={(item) => {
                     return item.ID;
@@ -114,11 +116,6 @@ const { apiUrl } = getEnvVars();
                                 </Right>
   
                                 </CardItem> 
-                              
-                              
-                                 
-                         
-                            
                             </Card>
                         </TouchableOpacity>
                     </View>
@@ -126,8 +123,7 @@ const { apiUrl } = getEnvVars();
                   }}
                 />
 
-              
-        
+                
         </Container>
      
       )
