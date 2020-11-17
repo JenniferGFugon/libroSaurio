@@ -1,7 +1,7 @@
-import { Container, Footer, Right,Drawer,SideBar } from "native-base";
+import { Right } from "native-base";
 import React, { useEffect, useState } from "react";
 
-import { StyleSheet, Text, View, Image, Dimensions,FlatList } from "react-native";
+import { StyleSheet, Text, View, Image, Dimensions,FlatList ,ScrollView} from "react-native";
 import {
   Input,
   Item,
@@ -12,10 +12,9 @@ import {
   Spinner,
   Card,
   CardItem,
-  H3,
-  Body,
+ 
   Left,
-  Thumbnail
+  
   
 } from "native-base";
 import backend from "../api/backend";
@@ -30,26 +29,68 @@ const { apiUrl } = getEnvVars();
     
      
     const [books, setBooks] = useState(null);
-
+    const [baseDatos, setBaseDatos] = useState(null);
+    const [controlVersiones, setControlVersiones] = useState(null);
+    const [desarolloWeb, setdesarolloWeb] = useState(null);
+    const [diseño3D, setDiseño3D] = useState(null);
+    const [electronica, setElectronica] = useState(null);
+    const [metodologiasAgiles, setMetodologiasAgiles] = useState(null);
+    const [multimedia, setMultimedia] = useState(null);
+    const [redes, setRedes] = useState(null);
+    const [retroinformatica, setRetroinformatica] = useState(null);
+    const [robotica, setRobotica] = useState(null);
+    const [seo, setSeo] = useState(null);
+    const [softwareGeneral, setSoftwareGeneral] = useState(null);
+    const [softwareLibre, setSoftwareLibre] = useState(null);
     const [error, setError] = useState(false);
     const [search, setSearch] = useState("");
     const [searchError, setSearchError] = useState(false);
-    const categoryId = [1,2,3,4,5,6];
  
 
     async function getBooks() {
         try {
           const response = await backend.get(`${apiUrl}?category=libros_programacion&criteria=featured&lang=spanish`);
-    
           setBooks(response.data);
+          const response2 = await backend.get(`${apiUrl}?category=bases_de_datos&criteria=most_viewed&lang=spanish`);
+          setBaseDatos(response2.data);
+          const response3 = await backend.get(`${apiUrl}?category=control_de_versiones&criteria=most_viewed&lang=spanish`);
+          setControlVersiones(response3.data);
+          const response4 = await backend.get(`${apiUrl}?category=desarrollo_web&criteria=most_viewed&lang=spanish`);
+          setdesarolloWeb(response4.data);
+          const response5 = await backend.get(`${apiUrl}?category=diseno_3d&criteria=most_viewed&lang=spanish`);
+          setDiseño3D(response5.data);
+          const response6 = await backend.get(`${apiUrl}?category=electronica-biblioteca&criteria=most_viewed&lang=spanish`);
+          setElectronica(response6.data);
+          const response7 = await backend.get(`${apiUrl}?category=metodologias_agiles&criteria=most_viewed&lang=spanish`);
+          setMetodologiasAgiles(response7.data);
+          const response8 = await backend.get(`${apiUrl}?category=multimedia-biblioteca&criteria=most_viewed&lang=spanish`);
+          setMultimedia(response8.data);
+          const response9 = await backend.get(`${apiUrl}?category=redes_y_sysadmins&criteria=most_viewed&lang=spanish`);
+          setRedes(response9.data);
+          const response10 = await backend.get(`${apiUrl}?category=retroinformatica-biblioteca&criteria=most_viewed&lang=spanish`);
+          setRetroinformatica(response10.data);
+          const response11 = await backend.get(`${apiUrl}?category=robotica&criteria=most_viewed&lang=spanish`);
+          setRobotica(response11.data);
+          const response12 = await backend.get(`${apiUrl}?category=seo_y_sem&criteria=most_viewed&lang=spanish`);
+          setSeo(response12.data);
+          const response13 = await backend.get(`${apiUrl}?category=software-general&criteria=most_viewed&lang=spanish`);
+          setSoftwareGeneral(response13.data);
+          const response14 = await backend.get(`${apiUrl}?category=libros_software_libre&criteria=most_viewed&lang=spanish`);
+          setSoftwareLibre(response14.data);
+          
+          
         } catch (error) {
           setError(true);
         }
       }
+
+     
     // Hook de efecto
     useEffect(() => {
         getBooks();
     }, []);
+
+   
     
   if (!books) {
     return (
@@ -68,10 +109,34 @@ const { apiUrl } = getEnvVars();
       setSearchError(false);
     }
   } 
-  
 
+  const dataOptions = [
+    {value:books,
+    titulo:"Programacion",
+    keyItem:1},
+    {value:baseDatos,
+    titulo:"Base de Datos",
+    keyItem:2},
+    {value:controlVersiones,
+    titulo:"Control de Versiones",
+    keyItem:3},
+    {value:desarolloWeb,
+    titulo:"Desarollo Web",
+    keyItem:4},
+    {value:diseño3D},
+    {value:electronica},
+    {value:metodologiasAgiles},
+    {value:multimedia},
+    {value:redes},
+    {value:retroinformatica},
+    {value:robotica},
+    {value:seo},
+    {value:softwareGeneral},
+    {value:softwareLibre}
+  ];  
+  
       return (
-        <Container  style={{backgroundColor: 'black'}}>
+        <ScrollView  style={{backgroundColor: 'black'}}>
             <Header style={styles.header} >
               <Left> 
                 <Image source={require("../../assets/logo_computadora.png")} style={styles.logoImage} />
@@ -89,42 +154,40 @@ const { apiUrl } = getEnvVars();
               
             </Header>
                  <Image source={require("../../assets/logo_letras.png")} style={styles.letrasImage}/>
-                <Text style = {styles.text} > TOPS EN PROGRAMACIÓN </Text>
-
-                <FlatList
-                  horizontal={true}
+                 
+                  {dataOptions.map((dat,index) => (
+                   
                   
-                  data={books}
-                  keyExtractor={(item) => {
-                    return item.ID;
-                  }}
+                  <FlatList style={{flex:1}}
+                    horizontal={true}
+                    data={dat.value}
+                    keyExtractor={(item) => {
+                      return item.ID.toString();
+                    }}    
                   ListEmptyComponent={<Text>¡No se han encontrado libros!</Text>}
+                   
                   renderItem={({ item }) => {
-                    return (
-                      <View style={{backgroundColor: "black"}}>
-                          <TouchableOpacity onPress={() => navigation.navigate("infoScreen", {ID: item.ID})}>
-                            <Card style={styles.card}>
-                                      
-                                <CardItem cardBody bordered>
-                                <Left header bordered style={{backgroundColor: "#0f630f"}}>
-                                  <Image  source={{ uri: `${item.cover}` }} style={styles.bookImage} />
-                               </Left>                                      
-                               <Right >
-                                  <H3 style={styles.tituloLibro}>{item.title}</H3>
-                                  <Text style={styles.autoryPag} > {item.pages} Páginas</Text>
-                                  <Text style={styles.autoryPag}> Autor: {item.author}</Text>
-                                </Right>
-  
-                                </CardItem> 
-                            </Card>
-                        </TouchableOpacity>
+                    <View>
+                          <Text  style = {styles.text}  > {dat.titulo}</Text>
                     </View>
+                    return (
+                      <View >
+                           
+                          <View  style={{backgroundColor: "black"}}>
+                              <TouchableOpacity  onPress={() => navigation.navigate("infoScreen", {ID: item.ID})}>
+                                <Card style={styles.card}>
+                                    <Image  source={{ uri: `${item.cover}` }} style={styles.bookImage}/>
+                                </Card>
+                            </TouchableOpacity>
+                        </View>
+                      </View>
+                      
                     )
                   }}
                 />
-
+                ))}
                 
-        </Container>
+        </ScrollView>
      
       )
   };
@@ -139,10 +202,10 @@ const { apiUrl } = getEnvVars();
       fontSize: 25,
       fontWeight: "bold",
       marginTop: 20,
-      marginBottom: 10,
       textAlign: "center",
       color: "#fff",
       backgroundColor: "#0f630f"
+      
     },
 
     tituloLibro: {
@@ -162,18 +225,20 @@ const { apiUrl } = getEnvVars();
     bookImage: {
       width: width * 0.40,
       height: height * 0.30,
-    
+      borderRadius:20 ,
+      overflow: 'hidden'
+
     },
 
     letrasImage: {
       width: 200,
       height: 50,
-      marginLeft:80,
+      marginLeft:80
     },
 
     logoImage: {
       width: 50,
-      height: 33,
+      height: 45,
     },
 
     icono: {
@@ -181,9 +246,15 @@ const { apiUrl } = getEnvVars();
       margin: 10,
     },
     card:{
-      width:width*0.90,
-      marginLeft:20,
-    }
+      width:width*0.40,
+      height:height*0.30,
+      borderRadius:20,
+      overflow: 'hidden'
+
+
+    },
+    
+    
   });
 
 export default mainScreen;
