@@ -1,4 +1,4 @@
-import { Right } from "native-base";
+import { Body, Right } from "native-base";
 import React, { useEffect, useState } from "react";
 
 import { StyleSheet, Text, View, Image, Dimensions,FlatList ,ScrollView} from "react-native";
@@ -45,8 +45,7 @@ const { apiUrl } = getEnvVars();
     const [error, setError] = useState(false);
     const [search, setSearch] = useState("");
     const [searchError, setSearchError] = useState(false);
- 
-
+  
     async function getBooks() {
         try {
           const response = await backend.get(`${apiUrl}?category=libros_programacion&criteria=featured&lang=spanish`);
@@ -92,7 +91,7 @@ const { apiUrl } = getEnvVars();
 
    
     
-  if (!books) {
+  if (!books || !baseDatos || !controlVersiones || !desarolloWeb || !diseño3D || !electronica || !metodologiasAgiles || !multimedia || !redes || !retroinformatica || !robotica || !seo || !softwareGeneral || !softwareLibre) {
     return (
       <View style={{flex: 1, justifyContent: "center"}}>
         <Spinner color="green" />
@@ -112,27 +111,33 @@ const { apiUrl } = getEnvVars();
 
   const dataOptions = [
     {value:books,
-    titulo:"Programacion",
-    keyItem:1},
+    titulo:"Programacion"},
     {value:baseDatos,
-    titulo:"Base de Datos",
-    keyItem:2},
+    titulo:"Base de Datos"},
     {value:controlVersiones,
-    titulo:"Control de Versiones",
-    keyItem:3},
+    titulo:"Control de Versiones"},
     {value:desarolloWeb,
-    titulo:"Desarollo Web",
-    keyItem:4},
-    {value:diseño3D},
-    {value:electronica},
-    {value:metodologiasAgiles},
-    {value:multimedia},
-    {value:redes},
-    {value:retroinformatica},
-    {value:robotica},
-    {value:seo},
-    {value:softwareGeneral},
-    {value:softwareLibre}
+    titulo:"Desarollo Web"},
+    {value:diseño3D,
+    titulo:"Diseño 3D"},
+    {value:electronica,
+    titulo:"Electronica"},
+    {value:metodologiasAgiles,
+    titulo:"Metodologias Aguiles"},
+    {value:multimedia,
+    titulo:"Multimedia"},
+    {value:redes,
+    titulo:"Redes"},
+    {value:retroinformatica,
+    titulo:"Retro Informatica"},
+    {value:robotica,
+    titulo:"Robotica"},
+    {value:seo,
+    titulo:"SEO"},
+    {value:softwareGeneral,
+    titulo:"Software General"},
+    {value:softwareLibre,
+    titulo:"Software Libre"}
   ];  
   
       return (
@@ -154,39 +159,35 @@ const { apiUrl } = getEnvVars();
               
             </Header>
                  <Image source={require("../../assets/logo_letras.png")} style={styles.letrasImage}/>
-                 
-                  {dataOptions.map((dat,index) => (
-                   
-                  
-                  <FlatList style={{flex:1}}
-                    horizontal={true}
-                    data={dat.value}
-                    keyExtractor={(item) => {
-                      return item.ID.toString();
-                    }}    
-                  ListEmptyComponent={<Text>¡No se han encontrado libros!</Text>}
-                   
-                  renderItem={({ item }) => {
-                    <View>
-                          <Text  style = {styles.text}  > {dat.titulo}</Text>
+                    {dataOptions.map((dat) => (
+                    <Body>
+                       <Text  style = {styles.text}  > {dat.titulo}</Text>
+                   <FlatList style={{flex:1}}
+                     horizontal={true}
+                     data={dat.value}
+                     keyExtractor={(item) => {
+                       return item.ID.toString();
+                     }}    
+                   ListEmptyComponent={<Text>¡No se han encontrado libros!</Text>}
+                    
+                   renderItem={({ item }) => {
+                     return(
+
+                      <View  style={{backgroundColor: "black"}}>
+
+                          <TouchableOpacity  onPress={() => navigation.navigate("infoScreen", {ID: item.ID})}>
+                            <Card style={styles.card}>
+                                <Image  source={{ uri: `${item.cover}` }} style={styles.bookImage}/>
+                            </Card>
+                         </TouchableOpacity>
                     </View>
-                    return (
-                      <View >
-                           
-                          <View  style={{backgroundColor: "black"}}>
-                              <TouchableOpacity  onPress={() => navigation.navigate("infoScreen", {ID: item.ID})}>
-                                <Card style={styles.card}>
-                                    <Image  source={{ uri: `${item.cover}` }} style={styles.bookImage}/>
-                                </Card>
-                            </TouchableOpacity>
-                        </View>
-                      </View>
-                      
-                    )
-                  }}
-                />
-                ))}
-                
+                     ) 
+                   }}
+                 />
+                </Body>
+
+                 ))}
+
         </ScrollView>
      
       )
@@ -198,13 +199,14 @@ const { apiUrl } = getEnvVars();
     },
 
     text: {
+      flex:1,
       fontFamily: "serif",
       fontSize: 25,
       fontWeight: "bold",
       marginTop: 20,
-      textAlign: "center",
+      textAlign: "left" ,
+      alignContent: "flex-start",
       color: "#fff",
-      backgroundColor: "#0f630f"
       
     },
 
