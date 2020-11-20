@@ -1,6 +1,5 @@
 import { Body, Right } from "native-base";
 import React, { useEffect, useState } from "react";
-
 import { StyleSheet, Text, View, Image, Dimensions,FlatList ,ScrollView} from "react-native";
 import {
   Input,
@@ -48,41 +47,48 @@ const { apiUrl } = getEnvVars();
   
     async function getBooks() {
         try {
-          const response = await backend.get(`${apiUrl}?category=libros_programacion&criteria=featured&lang=spanish`);
-          setBooks(response.data);
-          const response2 = await backend.get(`${apiUrl}?category=bases_de_datos&criteria=most_viewed&lang=spanish`);
-          setBaseDatos(response2.data);
-          const response3 = await backend.get(`${apiUrl}?category=control_de_versiones&criteria=most_viewed&lang=spanish`);
-          setControlVersiones(response3.data);
-          const response4 = await backend.get(`${apiUrl}?category=desarrollo_web&criteria=most_viewed&lang=spanish`);
-          setdesarolloWeb(response4.data);
-          const response5 = await backend.get(`${apiUrl}?category=diseno_3d&criteria=most_viewed&lang=spanish`);
-          setDiseño3D(response5.data);
-          const response6 = await backend.get(`${apiUrl}?category=electronica-biblioteca&criteria=most_viewed&lang=spanish`);
-          setElectronica(response6.data);
-          const response7 = await backend.get(`${apiUrl}?category=metodologias_agiles&criteria=most_viewed&lang=spanish`);
-          setMetodologiasAgiles(response7.data);
-          const response8 = await backend.get(`${apiUrl}?category=multimedia-biblioteca&criteria=most_viewed&lang=spanish`);
-          setMultimedia(response8.data);
-          const response9 = await backend.get(`${apiUrl}?category=redes_y_sysadmins&criteria=most_viewed&lang=spanish`);
-          setRedes(response9.data);
-          const response10 = await backend.get(`${apiUrl}?category=retroinformatica-biblioteca&criteria=most_viewed&lang=spanish`);
-          setRetroinformatica(response10.data);
-          const response11 = await backend.get(`${apiUrl}?category=robotica&criteria=most_viewed&lang=spanish`);
-          setRobotica(response11.data);
-          const response12 = await backend.get(`${apiUrl}?category=seo_y_sem&criteria=most_viewed&lang=spanish`);
-          setSeo(response12.data);
-          const response13 = await backend.get(`${apiUrl}?category=software-general&criteria=most_viewed&lang=spanish`);
-          setSoftwareGeneral(response13.data);
-          const response14 = await backend.get(`${apiUrl}?category=libros_software_libre&criteria=most_viewed&lang=spanish`);
-          setSoftwareLibre(response14.data);
+          await Promise.all([
+           response = await backend.get(`${apiUrl}?category=libros_programacion&criteria=featured&lang=spanish`),
+           response2 = await backend.get(`${apiUrl}?category=bases_de_datos&criteria=most_viewed&lang=spanish`),
+           response3 = await backend.get(`${apiUrl}?category=control_de_versiones&criteria=most_viewed&lang=spanish`),
+           response4 = await backend.get(`${apiUrl}?category=desarrollo_web&criteria=most_viewed&lang=spanish`),
+           response5 = await backend.get(`${apiUrl}?category=diseno_3d&criteria=most_viewed&lang=spanish`),
+           response6 = await backend.get(`${apiUrl}?category=electronica-biblioteca&criteria=most_viewed&lang=spanish`),
+           response7 = await backend.get(`${apiUrl}?category=metodologias_agiles&criteria=most_viewed&lang=spanish`),
+           response8 = await backend.get(`${apiUrl}?category=multimedia-biblioteca&criteria=most_viewed&lang=spanish`),
+           response9 = await backend.get(`${apiUrl}?category=redes_y_sysadmins&criteria=most_viewed&lang=spanish`),
+           response10 = await backend.get(`${apiUrl}?category=retroinformatica-biblioteca&criteria=most_viewed&lang=spanish`),
+           response11 = await backend.get(`${apiUrl}?category=robotica&criteria=most_viewed&lang=spanish`),
+           response12 = await backend.get(`${apiUrl}?category=seo_y_sem&criteria=most_viewed&lang=spanish`),
+           response13 = await backend.get(`${apiUrl}?category=software-general&criteria=most_viewed&lang=spanish`),
+           response14 = await backend.get(`${apiUrl}?category=libros_software_libre&criteria=most_viewed&lang=spanish`),
+           setBooks(response.data),
+           setBaseDatos(response2.data),
+           setControlVersiones(response3.data),
+           setdesarolloWeb(response4.data),
+           setDiseño3D(response5.data),
+           setElectronica(response6.data),
+           setMetodologiasAgiles(response7.data),
+           setMultimedia(response8.data),
+           setRedes(response9.data),
+           setRetroinformatica(response10.data),
+           setRobotica(response11.data),
+           setSeo(response12.data),
+           setSoftwareGeneral(response13.data),
+           setSoftwareLibre(response14.data),
+          ]
+
+          ).then(() => {console.log('done')});
+
           
+         
           
-        } catch (error) {
+        } 
+        catch (error) {
           setError(true);
         }
       }
-
+      
      
     // Hook de efecto
     useEffect(() => {
@@ -95,6 +101,7 @@ const { apiUrl } = getEnvVars();
     return (
       <View style={{flex: 1, justifyContent: "center"}}>
         <Spinner color="green" />
+        <Text style={{textAlign:"center"}}>Cargando...</Text> 
       </View>
     )
   }
@@ -110,33 +117,46 @@ const { apiUrl } = getEnvVars();
   } 
 
   const dataOptions = [
-    {value:books,
+    {keyItem: 1,
+    value:books,
     titulo:"Programacion"},
-    {value:baseDatos,
+    {keyItem: 2,
+    value:baseDatos,
     titulo:"Base de Datos"},
-    {value:controlVersiones,
+    {keyItem: 3,
+    value:controlVersiones,
     titulo:"Control de Versiones"},
-    {value:desarolloWeb,
+    {keyItem: 4,
+    value:desarolloWeb,
     titulo:"Desarollo Web"},
-    {value:diseño3D,
+    {keyItem: 5,
+    value:diseño3D,
     titulo:"Diseño 3D"},
-    {value:electronica,
+    {keyItem: 6,
+    value:electronica,
     titulo:"Electronica"},
-    {value:metodologiasAgiles,
+    {keyItem: 7,
+    value:metodologiasAgiles,
     titulo:"Metodologias Aguiles"},
-    {value:multimedia,
+    {keyItem: 8,
+    value:multimedia,
     titulo:"Multimedia"},
-    {value:redes,
+    {keyItem: 9,
+    value:redes,
     titulo:"Redes"},
-    {value:retroinformatica,
+    {keyItem: 10,
+    value:retroinformatica,
     titulo:"Retro Informatica"},
-    {value:robotica,
+    {keyItem: 11,value:robotica,
     titulo:"Robotica"},
-    {value:seo,
+    {keyItem: 12,
+    value:seo,
     titulo:"SEO"},
-    {value:softwareGeneral,
+    {keyItem: 13,
+    value:softwareGeneral,
     titulo:"Software General"},
-    {value:softwareLibre,
+    {keyItem: 14,
+    value:softwareLibre,
     titulo:"Software Libre"}
   ];  
   
@@ -159,17 +179,16 @@ const { apiUrl } = getEnvVars();
               
             </Header>
                  <Image source={require("../../assets/logo_letras.png")} style={styles.letrasImage}/>
-                    {dataOptions.map((dat) => (
+                    {dataOptions.map((dat,index) => (
                     <Body>
-                       <Text  style = {styles.text}  > {dat.titulo}</Text>
+                       <Text  style = {styles.text} key={index} > {dat.titulo}</Text>
                    <FlatList style={{flex:1}}
                      horizontal={true}
                      data={dat.value}
                      keyExtractor={(item) => {
                        return item.ID.toString();
                      }}    
-                   ListEmptyComponent={<Text>¡No se han encontrado libros!</Text>}
-                    
+                   ListEmptyComponent={<Text>¡No se han encontrado libros!</Text>}  
                    renderItem={({ item }) => {
                      return(
 

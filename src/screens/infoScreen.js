@@ -1,10 +1,9 @@
-import react from "react";
 
-import { Container, Right, Content, Footer } from "native-base";
+import { Container, Content} from "native-base";
 import React, { useEffect, useState } from "react";
 
-import { StyleSheet, Text, View, Image, Dimensions,FlatList, getElementById} from "react-native";
-import {Input, Title, Item, H1, Button, Header, Icon, Spinner, Card, CardItem, H3, Body, Left} from "native-base";
+import { StyleSheet, Text, View, Image, Dimensions,FlatList} from "react-native";
+import { Header, Spinner, Card, Body, Left} from "native-base";
 
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
