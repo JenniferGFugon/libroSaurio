@@ -20,6 +20,8 @@ import {
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { LinearGradient } from 'expo-linear-gradient';
+
 const { width, height } = Dimensions.get("window");
 
 const { apiUrl } = getEnvVars();
@@ -111,7 +113,7 @@ const { apiUrl } = getEnvVars();
 
   const dataOptions = [
     {value:books,
-    titulo:"Programacion"},
+    titulo:"Programación"},
     {value:baseDatos,
     titulo:"Base de Datos"},
     {value:controlVersiones,
@@ -121,9 +123,9 @@ const { apiUrl } = getEnvVars();
     {value:diseño3D,
     titulo:"Diseño 3D"},
     {value:electronica,
-    titulo:"Electronica"},
+    titulo:"Electrónica"},
     {value:metodologiasAgiles,
-    titulo:"Metodologias Aguiles"},
+    titulo:"Metodologías Águiles"},
     {value:multimedia,
     titulo:"Multimedia"},
     {value:redes,
@@ -131,7 +133,7 @@ const { apiUrl } = getEnvVars();
     {value:retroinformatica,
     titulo:"Retro Informatica"},
     {value:robotica,
-    titulo:"Robotica"},
+    titulo:"Robótica"},
     {value:seo,
     titulo:"SEO"},
     {value:softwareGeneral,
@@ -141,27 +143,31 @@ const { apiUrl } = getEnvVars();
   ];  
   
       return (
-        <ScrollView  style={{backgroundColor: 'black'}}>
+        <ScrollView  style={{backgroundColor: '#227d3a'}}>
+          <LinearGradient 
+                colors={[colors= '#227d3a','#20BF55','#01BAEF']} 
+                style={styles.LinearGradient}
+                start={{ x: 1, y: 1 }}
+                end={{ x: 0, y: 1 }}
+          >
             <Header style={styles.header} >
               <Left> 
-                <Image source={require("../../assets/logo_computadora.png")} style={styles.logoImage} />
+                <Image source={require("../../assets/logo_dino.png")} style={styles.logoImage} />
               </Left>
-                  <Right> 
-                        <Item>
-                            <Input placeholder="Buscar" value={search} onChangeText={setSearch} style={searchError ? styles.inputError : null} />
-                        </Item>
-                    </Right>
+              <Right>
+                <Item style={styles.item}>
+                  <Input placeholder="Buscar" value={search} onChangeText={setSearch} style={searchError ? styles.inputError : null} />
+                </Item>
                 <Button transparent icon onPress={handlerSearch } >
-                    <Icon name="search" style={styles.icono} />
+                  <Icon name="search" style={styles.icono} />
                 </Button>
-            
-             
-              
+              </Right>
+
             </Header>
-                 <Image source={require("../../assets/logo_letras.png")} style={styles.letrasImage}/>
+                <Image source={require("../../assets/logo_letras.png")} style={styles.letrasImage}/>
                     {dataOptions.map((dat) => (
                     <Body>
-                       <Text  style = {styles.text}  > {dat.titulo}</Text>
+                      <Text  style = {styles.text}  > {dat.titulo}</Text>
                    <FlatList style={{flex:1}}
                      horizontal={true}
                      data={dat.value}
@@ -173,7 +179,7 @@ const { apiUrl } = getEnvVars();
                    renderItem={({ item }) => {
                      return(
 
-                      <View  style={{backgroundColor: "black"}}>
+                      <View  style={{backgroundColor: "transparent"}}>
 
                           <TouchableOpacity  onPress={() => navigation.navigate("infoScreen", {ID: item.ID})}>
                             <Card style={styles.card}>
@@ -187,7 +193,7 @@ const { apiUrl } = getEnvVars();
                 </Body>
 
                  ))}
-
+          </LinearGradient>
         </ScrollView>
      
       )
@@ -196,6 +202,13 @@ const { apiUrl } = getEnvVars();
    const styles = StyleSheet.create({
     header: {
       backgroundColor: '#fff',
+      
+    },
+
+    LinearGradient: {
+      height: "auto",
+      width: width
+      
     },
 
     text: {
@@ -204,10 +217,11 @@ const { apiUrl } = getEnvVars();
       fontSize: 25,
       fontWeight: "bold",
       marginTop: 20,
+      marginBottom: 10,
       textAlign: "left" ,
       alignContent: "flex-start",
       color: "#fff",
-      
+     
     },
 
     tituloLibro: {
@@ -233,29 +247,35 @@ const { apiUrl } = getEnvVars();
     },
 
     letrasImage: {
-      width: 200,
+      width: width,
       height: 50,
-      marginLeft:80
+      marginTop: 10
     },
 
     logoImage: {
-      width: 50,
-      height: 45,
+      width: 60,
+      height: 50,
+      marginLeft: 8
     },
 
     icono: {
       color: "green",
-      margin: 10,
+      
+      marginRight: 13
     },
     card:{
       width:width*0.40,
       height:height*0.30,
       borderRadius:20,
-      overflow: 'hidden'
-
+      overflow: 'hidden',
+      marginLeft: 4
 
     },
     
+    item: {
+      marginRight: 5,
+      width: 210,
+    }
     
   });
 

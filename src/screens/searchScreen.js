@@ -47,11 +47,16 @@ const searchScreen = ({ route, navigation }) => {
         <Container>
            <Header style={styles.header} >
               <Left> 
-                <Image source={require("../../assets/logo_computadora.png")} style={styles.logoImage} />
+                <Image source={require("../../assets/logo_dino.png")} style={styles.logoImage} />
               </Left>
               <Image source={require("../../assets/logo_letras.png")} style={styles.letrasImage} />
             </Header>
-              <LinearGradient colors={[colors= '#238723','#055e05','#000E21']} style={styles.LinearGradient}>
+              <LinearGradient 
+                colors={[colors= '#227d3a','#20BF55','#01BAEF']} 
+                style={styles.LinearGradient}
+                start={{ x: 1, y: 0 }}
+                end={{ x: 0, y: 1 }}
+                >
                 <Text style={styles.textHeader}>
                   <H1 style={styles.estiloH1}>Resultados de la Búsqueda</H1>
                </Text>
@@ -80,31 +85,28 @@ const searchScreen = ({ route, navigation }) => {
                     ];
                     const translateY = scrollX.interpolate({
                       inputRange,
-                      outputRange:[-30, -70, -30],
+                      outputRange:[-30, -65, -30],
                     });
                     return (
                       <View style={styles.firstView} >
                           <TouchableOpacity onPress={() => navigation.navigate("infoScreen", {ID: item.ID})}>
                             <Animated.View style={styles.estiloView} style={{transform: [{translateY}] }}>
-                            <Card style={styles.estiloCard}>
-                              <CardItem header bordered style={styles.cardItem}>
-                                <H3 style={styles.tituloLibro}>{item.title}</H3>
-                              </CardItem>                          
-                               
-                                
-                                  <Image  source={{ uri: `${item.cover}` }} style={styles.bookImage} />
-                              
-                                
-                              
+                              <Card style={styles.estiloCard}>
+                                <CardItem header style={styles.cardItem}>
+                                  <H3 style={styles.tituloLibro}>{item.title}</H3>
+                                </CardItem>                          
+                   
+                                <Image  source={{ uri: `${item.cover}` }} style={styles.bookImage} />
+                             
                                 <CardItem footer bordered style={styles.cardItem} >
                                   <Text style={styles.autoryPag} > {item.pages} Páginas</Text>
                                   <Right>
-                                  <Text style={styles.autoryPag}> Autor: {item.author}</Text>
+                                    <Text style={styles.autoryPag}> Autor: {item.author}</Text>
                                   </Right>
-                              </CardItem>
+                                </CardItem>
                               </Card>
                             </Animated.View>
-                        </TouchableOpacity>
+                          </TouchableOpacity>
                       </View>
                     )
                   }}
@@ -119,7 +121,6 @@ const styles = StyleSheet.create({
       width: width,
       height: height,
       backgroundColor: 'green',
-      
     },
 
     LinearGradient: {
@@ -129,14 +130,14 @@ const styles = StyleSheet.create({
     },
 
     textHeader: {
-      fontFamily: "Times New Roman",
-      fontSize: 25,
+      fontFamily: "Serif",
+      fontSize: 15,
       fontWeight: "bold",
-      marginTop: 20,
+      marginTop: 10,
       marginBottom: 10,
       textAlign: "center",
       color: "#fff",
-      backgroundColor: "#173d17"
+      
     },
 
     firstView: {
@@ -159,18 +160,20 @@ const styles = StyleSheet.create({
       marginHorizontal: 5,
       paddingTop: 5,
       alignItems: "center",
-      backgroundColor: "white",
+      backgroundColor: "#F5F5F5",
       borderRadius: 10,
       width: width * 0.79, 
-      height: "auto",   
-      borderColor: "white",
-      borderStyle: "dotted",   
+      height: "auto",
+      borderWidth: 50,   
+      borderColor: "blue",
+      borderStyle: "solid",   
       
     },
 
     estiloH1: {
       color: 'white',
       textAlign: "center",
+      fontSize: 25
       //paddingBottom: 30,
       //backgroundColor: "#0f630f",
     },
@@ -189,16 +192,16 @@ const styles = StyleSheet.create({
         marginLeft: 5,        
     },
     letrasImage: {
-        width: 180,
+        width: 222,
         height: 30,
         margin: 20,
-        marginRight: 50,
+        marginRight: 38,
     },
   
     logoImage: {
-        width: 50,
-        height: 33,
-        marginLeft: 10,
+      width: 60,
+      height: 48,
+      marginLeft: 30
     },
 
     tituloLibro: {
@@ -218,9 +221,7 @@ const styles = StyleSheet.create({
     },
 
     cardItem: {
-      backgroundColor: "#49c46a",
-      borderWidth: 1,
-      borderColor: "white"
+      backgroundColor: "transparent",
     }
 
   });

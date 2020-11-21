@@ -8,6 +8,8 @@ import {Input, Title, Item, H1, Button, Header, Icon, Spinner, Card, CardItem, H
 
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
+import { LinearGradient } from 'expo-linear-gradient';
+
 const { apiUrl  } = getEnvVars();
 
 const { width, height } = Dimensions.get("window");
@@ -17,8 +19,6 @@ const infoScreen = ({ route,navigation }) => {
     const [book, setBook] = useState(null);
     const [error, setError] = useState(false);
     var contenido ="";
-   
-
     
     async function getBookInfo() {
         try {
@@ -36,8 +36,6 @@ const infoScreen = ({ route,navigation }) => {
       useEffect(() => {
         getBookInfo();
       }, []);
-
-
 
       if (!book) {
         return (
@@ -62,15 +60,6 @@ const infoScreen = ({ route,navigation }) => {
         contenido=contenido.replace(/&rdquo;/g,"\"")
         contenido=contenido.replace(/&iquest;/g, "¿")
 
-
-
-
-
-
-
-
-
-
         console.log(contenido);
         
         return contenido;
@@ -80,117 +69,139 @@ const infoScreen = ({ route,navigation }) => {
         <Container>
             <Header style={styles.header} >
                 <Left>
-                    <Image  source={require("../../assets/logo_computadora.png")} style={styles.logoImage} />
+                    <Image  source={require("../../assets/logo_dino.png")} style={styles.logoImage} />
                 </Left>
-                <Body>
-                    <Image  source={require("../../assets/logo_letras.png")} style={styles.letrasImage} />
-                </Body>
-                
+                <Image  source={require("../../assets/logo_letras.png")} style={styles.letrasImage} />             
             </Header>
-            
-
-
-                     
-       
-                    <FlatList
+        
+              <FlatList
                   data={book}
                   keyExtractor={(item) => {
                     return item.ID;
                   }}
                   renderItem={({ item }) => {
                     return (
-                      <View style={{backgroundColor: "black"}}>
+                      <View style={{backgroundColor: "#227d3a"}}>
                             <Card>
-                                <Header style={{backgroundColor: "black"}}>
-                                    <Text style={styles.tituloLibro}>{item.title}</Text>
+                            <LinearGradient 
+                              colors={[colors= '#227d3a','#20BF55','#01BAEF']} 
+                              style={styles.LinearGradient}
+                              start={{ x: 1, y: 1 }}
+                              end={{ x: 1, y: 0 }}
+                            >
+                                <Header style={{backgroundColor: "#227d3a"}}>
+                                  <Text style={styles.tituloLibro}>{item.title}</Text>
                                 </Header>
                                 <Body bordered>
                                 
                                 <Image  source={{ uri: `${item.cover}` }} style={styles.bookImage} />
                                 <Text style={styles.textoAlineadoL} > Detalles del libro:   </Text>
-                                  <Text style={styles.texto}> Año: {item.publisher_date}</Text>
-                                  <Text style={styles.texto}> Editor: {item.publisher}</Text>
-                                  <Text style={styles.texto}> Paginas: {item.pages}</Text>
-                                  <Text style={styles.texto}> Idioma: {item.language}</Text>
-                                  <Text style={styles.texto} > Descripcion:   </Text>
-                                  <Text style={styles.texto} > {removeContent(item)} </Text>
-                                  <Text style={styles.texto} > Categorias </Text>
-                                  <Text style={styles.texto} > {
+                                  <Text style={styles.tags}> Año: {item.publisher_date}</Text>
+                                  <Text style={styles.tags}> Editor: {item.publisher}</Text>
+                                  <Text style={styles.tags}> Paginas: {item.pages}</Text>
+                                  <Text style={styles.tags}> Idioma: {item.language}</Text>
+                                  <Text style={styles.tags} > Categorías: </Text>
+                                  <Text style={styles.tags} > {
                                                                   item.categories.map((category) => (
                                                                     <Text key={category.category_id}>{category.name}</Text>
                                                                   ))
                                                                 }   </Text>
-
+                                  <Text >    </Text>
+                                  <Text style={styles.texto} > Descripcion:   </Text>
+                                  <Text style={styles.texto} > {removeContent(item)} </Text>
+                                  
 
                                </Body> 
-
-                                  
-                                  
-                                 
-                                  
-
-
+                              </LinearGradient>                                    
                             </Card>
                     </View>
                     )
                 }}
               />
+            
         </Container>
     );
 }
 const styles = StyleSheet.create({
-    Fondo: {
-      width: width,
-      height: height,
-    },
-
-    estiloH1: {
-       color: '#f2f2f2',
-       textAlign: "center",
-    },
-
-    letrasImage: {
-        width: 145,
-        height: 23,
+  Fondo: {
+    width: width,
+    height: height,
     },
   
-    logoImage: {
-        width: 50,
-        height: 33,
-    },
-    
-    icono: {
-        color: "green",
-        margin: 10,
-    },
-
-    header: {
-        backgroundColor: '#fff',
-      },
-
-    bookImage: {
-        width: width * 0.60,
-        height: height * 0.40,
+    LinearGradient: {
+      height: "auto",
+      width: width
       
     },
-    tituloLibro: {
-        
-        fontFamily: 'serif',
-        fontSize: 19,
-        fontWeight: "bold",
-        justifyContent: "center",
-        color: "#fff",
-      },  
-      texto:{
-        color:"black",
-        justifyContent:"center",
-        textAlign:"left"
-      },
-      textoAlineadoL:{
-        color:"black",
-        textAlign: "left" ,
-        justifyContent:"flex-start",
-      },
+  estiloH1: {
+    color: '#f2f2f2',
+    textAlign: "center",
+    },
+
+  letrasImage: {
+    width: 222,
+    height: 30,
+    margin: 20,
+    marginRight: 38,
+  },
+
+  logoImage: {
+    width: 60,
+    height: 48,
+    marginLeft: 30
+  },
+    
+  icono: {
+    color: "green",
+    margin: 10,
+  },
+
+  header: {
+    backgroundColor: '#fff',
+  },
+
+  bookImage: {
+    width: width * 0.60,
+    height: height * 0.45,
+    marginTop: 8,
+  },
+  
+  tituloLibro: {
+    fontFamily: 'serif',
+    fontSize: 19,
+    fontWeight: "bold",
+    justifyContent: "center",
+    color: "#fff",
+    marginTop: 10
+  },  
+  
+  texto:{
+    color:"black",
+    justifyContent:"center",
+    textAlign:"left",
+    fontSize: 19,
+    margin: 20,
+    marginTop: 5,
+    marginBottom: 5,
+  },
+
+  tags: {
+    color:"black",
+    justifyContent:"center",
+    fontSize: 18,
+    textAlign:"left",
+    marginTop: 5,
+    marginBottom: 5,
+  },
+  
+  textoAlineadoL:{
+    color:"black",
+    textAlign: "left" ,
+    justifyContent:"flex-start",
+    fontWeight: "bold",
+    marginTop: 10,
+    marginBottom: 5
+  },
   });
 
 export default infoScreen;
