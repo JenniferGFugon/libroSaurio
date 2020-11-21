@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, Image, Dimensions,FlatList ,ScrollView} from "r
 import {
   Input,
   Item,
-  H1,
   Button,
   Header,
   Icon,
@@ -75,14 +74,12 @@ const { apiUrl } = getEnvVars();
            setRobotica(response11.data),
            setSeo(response12.data),
            setSoftwareGeneral(response13.data),
-           setSoftwareLibre(response14.data),
+           setSoftwareLibre(response14.data), 
+           
           ]
-
+          
           ).then(() => {console.log('done')});
 
-          
-         
-          
         } 
         catch (error) {
           setError(true);
@@ -92,7 +89,12 @@ const { apiUrl } = getEnvVars();
      
     // Hook de efecto
     useEffect(() => {
+      let isCancelled = true;
+      if(isCancelled){
         getBooks();
+      }
+      return() => isCancelled= false;
+
     }, []);
 
    
@@ -180,12 +182,14 @@ const { apiUrl } = getEnvVars();
             </Header>
                  <Image source={require("../../assets/logo_letras.png")} style={styles.letrasImage}/>
                     {dataOptions.map((dat,index) => (
-                    <Body>
-                       <Text  style = {styles.text} key={index} > {dat.titulo}</Text>
+                    <Body key={dat.keyItem}>
+                       <Text  style = {styles.text }   > {dat.titulo}</Text>
                    <FlatList style={{flex:1}}
                      horizontal={true}
                      data={dat.value}
                      keyExtractor={(item) => {
+                        
+
                        return item.ID.toString();
                      }}    
                    ListEmptyComponent={<Text>¡No se han encontrado libros!</Text>}  
