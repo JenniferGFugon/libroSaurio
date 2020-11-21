@@ -1,5 +1,6 @@
 import { Body, Right } from "native-base";
 import React, { useEffect, useState } from "react";
+
 import { StyleSheet, Text, View, Image, Dimensions,FlatList ,ScrollView} from "react-native";
 import {
   Input,
@@ -18,6 +19,8 @@ import {
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { LinearGradient } from 'expo-linear-gradient';
+
 const { width, height } = Dimensions.get("window");
 
 const { apiUrl } = getEnvVars();
@@ -85,7 +88,7 @@ const { apiUrl } = getEnvVars();
           setError(true);
         }
       }
-      
+
      
     // Hook de efecto
     useEffect(() => {
@@ -103,7 +106,6 @@ const { apiUrl } = getEnvVars();
     return (
       <View style={{flex: 1, justifyContent: "center"}}>
         <Spinner color="green" />
-        <Text style={{textAlign:"center"}}>Cargando...</Text> 
       </View>
     )
   }
@@ -119,71 +121,76 @@ const { apiUrl } = getEnvVars();
   } 
 
   const dataOptions = [
-    {keyItem: 1,
+    {keyItem:1,
     value:books,
-    titulo:"Programacion"},
-    {keyItem: 2,
+    titulo:"Programación"},
+    {keyItem:2,
     value:baseDatos,
     titulo:"Base de Datos"},
-    {keyItem: 3,
+    {keyItem:3,
     value:controlVersiones,
     titulo:"Control de Versiones"},
-    {keyItem: 4,
+    {keyItem:4,
     value:desarolloWeb,
     titulo:"Desarollo Web"},
-    {keyItem: 5,
+    {keyItem:5,
     value:diseño3D,
     titulo:"Diseño 3D"},
-    {keyItem: 6,
+    {keyItem:6,
     value:electronica,
-    titulo:"Electronica"},
-    {keyItem: 7,
+    titulo:"Electrónica"},
+    {keyItem:7,
     value:metodologiasAgiles,
-    titulo:"Metodologias Aguiles"},
-    {keyItem: 8,
+    titulo:"Metodologías Águiles"},
+    {keyItem:8,
     value:multimedia,
     titulo:"Multimedia"},
-    {keyItem: 9,
+    {keyItem:9,
     value:redes,
     titulo:"Redes"},
-    {keyItem: 10,
+    {keyItem:10,
     value:retroinformatica,
     titulo:"Retro Informatica"},
-    {keyItem: 11,value:robotica,
-    titulo:"Robotica"},
-    {keyItem: 12,
+    {keyItem:11,
+    value:robotica,
+    titulo:"Robótica"},
+    {keyItem:12,
     value:seo,
     titulo:"SEO"},
-    {keyItem: 13,
+    {keyItem:13,
     value:softwareGeneral,
     titulo:"Software General"},
-    {keyItem: 14,
+    {keyItem:14,
     value:softwareLibre,
     titulo:"Software Libre"}
   ];  
   
       return (
-        <ScrollView  style={{backgroundColor: 'black'}}>
+        <ScrollView  style={{backgroundColor: '#227d3a'}}>
+          <LinearGradient 
+                colors={[colors= '#227d3a','#20BF55','#01BAEF']} 
+                style={styles.LinearGradient}
+                start={{ x: 1, y: 1 }}
+                end={{ x: 0, y: 1 }}
+          >
             <Header style={styles.header} >
               <Left> 
-                <Image source={require("../../assets/logo_computadora.png")} style={styles.logoImage} />
+                <Image source={require("../../assets/logo_dino.png")} style={styles.logoImage} />
               </Left>
-                  <Right> 
-                        <Item>
-                            <Input placeholder="Buscar" value={search} onChangeText={setSearch} style={searchError ? styles.inputError : null} />
-                        </Item>
-                    </Right>
+              <Right>
+                <Item style={styles.item}>
+                  <Input placeholder="Buscar" value={search} onChangeText={setSearch} style={searchError ? styles.inputError : null} />
+                </Item>
                 <Button transparent icon onPress={handlerSearch } >
-                    <Icon name="search" style={styles.icono} />
+                  <Icon name="search" style={styles.icono} />
                 </Button>
-            
-             
-              
+              </Right>
+
             </Header>
-                 <Image source={require("../../assets/logo_letras.png")} style={styles.letrasImage}/>
-                    {dataOptions.map((dat,index) => (
+                <Image source={require("../../assets/logo_letras.png")} style={styles.letrasImage}/>
+                    {dataOptions.map((dat) => (
                     <Body key={dat.keyItem}>
-                       <Text  style = {styles.text }   > {dat.titulo}</Text>
+                      <Text  style = {styles.text}  > {dat.titulo}</Text>
                    <FlatList style={{flex:1}}
                      horizontal={true}
                      data={dat.value}
@@ -192,11 +199,12 @@ const { apiUrl } = getEnvVars();
 
                        return item.ID.toString();
                      }}    
-                   ListEmptyComponent={<Text>¡No se han encontrado libros!</Text>}  
+                   ListEmptyComponent={<Text>¡No se han encontrado libros!</Text>}
+                    
                    renderItem={({ item }) => {
                      return(
 
-                      <View  style={{backgroundColor: "black"}}>
+                      <View  style={{backgroundColor: "transparent"}}>
 
                           <TouchableOpacity  onPress={() => navigation.navigate("infoScreen", {ID: item.ID})}>
                             <Card style={styles.card}>
@@ -210,7 +218,7 @@ const { apiUrl } = getEnvVars();
                 </Body>
 
                  ))}
-
+          </LinearGradient>
         </ScrollView>
      
       )
@@ -219,6 +227,13 @@ const { apiUrl } = getEnvVars();
    const styles = StyleSheet.create({
     header: {
       backgroundColor: '#fff',
+      
+    },
+
+    LinearGradient: {
+      height: "auto",
+      width: width
+      
     },
 
     text: {
@@ -227,10 +242,12 @@ const { apiUrl } = getEnvVars();
       fontSize: 25,
       fontWeight: "bold",
       marginTop: 20,
+      marginBottom: 10,
       textAlign: "left" ,
       alignContent: "flex-start",
+      justifyContent:"flex-start",
       color: "#fff",
-      
+     
     },
 
     tituloLibro: {
@@ -256,29 +273,35 @@ const { apiUrl } = getEnvVars();
     },
 
     letrasImage: {
-      width: 200,
+      width: width,
       height: 50,
-      marginLeft:80
+      marginTop: 10
     },
 
     logoImage: {
-      width: 50,
-      height: 45,
+      width: 60,
+      height: 50,
+      marginLeft: 8
     },
 
     icono: {
       color: "green",
-      margin: 10,
+      
+      marginRight: 13
     },
     card:{
       width:width*0.40,
       height:height*0.30,
       borderRadius:20,
-      overflow: 'hidden'
-
+      overflow: 'hidden',
+      marginLeft: 4
 
     },
     
+    item: {
+      marginRight: 5,
+      width: 210,
+    }
     
   });
 
