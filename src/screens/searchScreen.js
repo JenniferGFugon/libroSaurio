@@ -1,10 +1,9 @@
-import react from "react";
 
 import { Container, Right, Content, Footer } from "native-base";
 import React, { useEffect, useState } from "react";
 
-import { StyleSheet, Text, View, Image, Dimensions, FlatList, ImageBackground, Animated } from "react-native";
-import {Input, Title, Item, H1, Button, Header, Icon, Spinner, Card, CardItem, H3, Body, Left, Thumbnail} from "native-base";
+import { StyleSheet, Text, View, Image, Dimensions,  Animated } from "react-native";
+import {H1, Header, Spinner, Card, CardItem, H3, Left} from "native-base";
 
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
@@ -52,7 +51,7 @@ const searchScreen = ({ route, navigation }) => {
               <Image source={require("../../assets/logo_letras.png")} style={styles.letrasImage} />
             </Header>
               <LinearGradient 
-                colors={[colors= '#227d3a','#20BF55','#01BAEF']} 
+                colors={[colors= '#7F8C8D','#000000']} 
                 style={styles.LinearGradient}
                 start={{ x: 1, y: 0 }}
                 end={{ x: 0, y: 1 }}
@@ -130,8 +129,8 @@ const styles = StyleSheet.create({
     },
 
     textHeader: {
-      fontFamily: "Serif",
-      fontSize: 15,
+      fontFamily: "serif",
+      fontSize: 25,
       fontWeight: "bold",
       marginTop: 10,
       marginBottom: 10,
@@ -205,7 +204,7 @@ const styles = StyleSheet.create({
     },
 
     tituloLibro: {
-      fontFamily: "Times New Roman",
+      fontFamily: "serif",
       fontSize: 16,
       fontWeight: "bold",
       alignContent: "center",
@@ -214,7 +213,7 @@ const styles = StyleSheet.create({
     },
 
     autoryPag: {
-      fontFamily: "Times New Roman",
+      fontFamily: "serif",
       fontSize: 18,
       fontStyle: "italic"
       //color:"fff",

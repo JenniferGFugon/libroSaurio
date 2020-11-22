@@ -1,10 +1,9 @@
-import react from "react";
 
-import { Container, Right, Content, Footer } from "native-base";
+import { Container, Content} from "native-base";
 import React, { useEffect, useState } from "react";
 
-import { StyleSheet, Text, View, Image, Dimensions,FlatList, getElementById} from "react-native";
-import {Input, Title, Item, H1, Button, Header, Icon, Spinner, Card, CardItem, H3, Body, Left} from "native-base";
+import { StyleSheet, Text, View, Image, Dimensions,FlatList} from "react-native";
+import { Header, Spinner, Card, Body, Left} from "native-base";
 
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
@@ -84,10 +83,10 @@ const infoScreen = ({ route,navigation }) => {
                       <View style={{backgroundColor: "#227d3a"}}>
                             <Card>
                             <LinearGradient 
-                              colors={[colors= '#227d3a','#20BF55','#01BAEF']} 
+                              colors={[colors= '#7F8C8D','#000000']} 
                               style={styles.LinearGradient}
-                              start={{ x: 1, y: 1 }}
-                              end={{ x: 1, y: 0 }}
+                              start={{ x: 1, y: 0 }}
+                              end={{ x: 0, y: 1 }}
                             >
                                 <Header style={{backgroundColor: "#227d3a"}}>
                                   <Text style={styles.tituloLibro}>{item.title}</Text>
@@ -176,7 +175,7 @@ const styles = StyleSheet.create({
   },  
   
   texto:{
-    color:"black",
+    color:"white",
     justifyContent:"center",
     textAlign:"left",
     fontSize: 19,
@@ -186,7 +185,7 @@ const styles = StyleSheet.create({
   },
 
   tags: {
-    color:"black",
+    color:"white",
     justifyContent:"center",
     fontSize: 18,
     textAlign:"left",
@@ -195,10 +194,11 @@ const styles = StyleSheet.create({
   },
   
   textoAlineadoL:{
-    color:"black",
+    color:"white",
     textAlign: "left" ,
     justifyContent:"flex-start",
     fontWeight: "bold",
+    fontSize: 15,
     marginTop: 10,
     marginBottom: 5
   },
