@@ -10,7 +10,6 @@ import getEnvVars from "../../enviroment";
 const { width, height } = Dimensions.get("window");
 const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { linear } from "react-native/Libraries/Animated/src/Easing";
 //import Animated from "react-native-reanimated";
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -204,7 +203,7 @@ const styles = StyleSheet.create({
     },
 
     tituloLibro: {
-      fontFamily: "serif",
+      fontFamily: "sans-serif-thin",
       fontSize: 16,
       fontWeight: "bold",
       alignContent: "center",
@@ -213,7 +212,7 @@ const styles = StyleSheet.create({
     },
 
     autoryPag: {
-      fontFamily: "serif",
+      fontFamily: "sans-serif-thin",
       fontSize: 18,
       fontStyle: "italic"
       //color:"fff",
