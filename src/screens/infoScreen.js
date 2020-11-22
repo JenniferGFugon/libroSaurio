@@ -110,7 +110,7 @@ const infoScreen = ({ route,navigation }) => {
                                   <Text style={styles.tags} > Categorías: </Text>
                                   <Text  style={styles.textBadge}> {
                                                                   item.categories.map((category) => (
-                                                                    <Badge style={styles.badge} key={category.id} >
+                                                                    <Badge style={styles.badge} key={category.category_id} >
                                                                     <Text key={category.category_id}>{category.name}</Text>
                                                                     </Badge>
 
