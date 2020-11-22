@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, Image, Dimensions,FlatList ,ScrollView} from "r
 import {
   Input,
   Item,
-  H1,
   Button,
   Header,
   Icon,
@@ -77,14 +76,12 @@ const { apiUrl } = getEnvVars();
            setRobotica(response11.data),
            setSeo(response12.data),
            setSoftwareGeneral(response13.data),
-           setSoftwareLibre(response14.data),
+           setSoftwareLibre(response14.data), 
+           
           ]
-
+          
           ).then(() => {console.log('done')});
 
-          
-         
-          
         } 
         catch (error) {
           setError(true);
@@ -94,7 +91,12 @@ const { apiUrl } = getEnvVars();
      
     // Hook de efecto
     useEffect(() => {
+      let isCancelled = true;
+      if(isCancelled){
         getBooks();
+      }
+      return() => isCancelled= false;
+
     }, []);
 
    
@@ -192,6 +194,8 @@ const { apiUrl } = getEnvVars();
                      horizontal={true}
                      data={dat.value}
                      keyExtractor={(item) => {
+                        
+
                        return item.ID.toString();
                      }}    
                    ListEmptyComponent={<Text>¡No se han encontrado libros!</Text>}  
@@ -239,6 +243,7 @@ const { apiUrl } = getEnvVars();
       marginBottom: 10,
       textAlign: "left" ,
       alignContent: "flex-start",
+      justifyContent:"flex-start",
       color: "#fff",
      
     },
