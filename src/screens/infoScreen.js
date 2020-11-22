@@ -3,7 +3,7 @@ import { Container, Content} from "native-base";
 import React, { useEffect, useState } from "react";
 
 import { StyleSheet, Text, View, Span, Image, Dimensions,FlatList, getElementById} from "react-native";
-import {Input, Title, Item, H1, Button, Header, Icon, Spinner, Card, CardItem, H3, Body, Left,Badge,bad} from "native-base";
+import {Input, Title, Item, H1, Button, Header, Icon, Spinner, Card, CardItem, H3, Body, Left, Right, Badge,bad} from "native-base";
 
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
@@ -66,7 +66,7 @@ const infoScreen = ({ route,navigation }) => {
       }
 
       return (
-        <Container>
+        <Container >
             <Header style={styles.header} >
                 <Left>
                     <Image  source={require("../../assets/logo_dino.png")} style={styles.logoImage} />
@@ -83,20 +83,17 @@ const infoScreen = ({ route,navigation }) => {
                     return (
                       <View style={{backgroundColor: "#227d3a"}}>
                         <LinearGradient 
-                              colors={[colors= '#227d3a','#20BF55','#01BAEF']} 
+                              colors={[colors= '#1ebd62','#198a49','#166D3B', '#000000']} 
                               style={styles.LinearGradient}
-                              start={{ x: 1, y: 0 }}
-                              end={{ x: 0, y: 1 }}
+                              start={{ x: 1, y: 1 }}
+                              end={{ x: 1, y: 0 }}
                             >
                             <Text style={styles.tituloLibro}>{item.title}</Text>
 
                             <Card style={styles.cardImagen}>
-                            
-                                
+  
                                 <Image  source={{ uri: `${item.cover}` }} style={styles.bookImage} />
-                                
-                                  
-
+     
                             </Card>
                             
                             <Card style={styles.cardTexto}>
@@ -126,15 +123,13 @@ const infoScreen = ({ route,navigation }) => {
                             <Text style={styles.tagsData}> </Text>
                             <Text style={styles.tagsData}> </Text>
 
-                            
-
                              </Right> 
                                  
                             </Card>
                               
                             <Text style={styles.texto} > Descripcion   </Text>
                                   <Text style={styles.textoContenido} > {removeContent(item)} </Text>
-                                  </LinearGradient>                                    
+                        </LinearGradient>                                    
 
                     </View>
                     )
@@ -197,34 +192,35 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     justifyContent: "center",
     color: "#fff",
-    marginTop: 10,
+    marginTop: 18,
+    marginBottom: 15,
     textAlign:"center"
   },  
   
   texto:{
     flex:1,
-    color:"black",
+    color:"white",
     justifyContent:"center",
     textAlign:"left",
     fontSize: 19,
     marginTop: 5,
     marginBottom: 5,
+    marginLeft: 10,
     fontWeight:"bold"
   },
   textoContenido:{
     flex:1,
-    color:"black",
+    color:"white",
     justifyContent:"center",
-    textAlign:"left",
+    textAlign: "justify",
     fontSize: 17,
-    marginTop: 5,
-    marginBottom: 5,
+    margin: 18
   },
 
   tags: {
     fontWeight: "bold",
 
-    color:"black",
+    color:"white",
     justifyContent:"center",
     fontSize: 16,
     textAlign:"left",
@@ -234,7 +230,7 @@ const styles = StyleSheet.create({
   },
   tagsData:{
     
-    color:"black",
+    color:"white",
     justifyContent:"center",
     fontSize: 16,
     textAlign:"right",
@@ -244,7 +240,8 @@ const styles = StyleSheet.create({
   },
   textoAlineadoL:{
     color:"white",
-    textAlign: "left" ,
+    textAlign: "center" ,
+    marginLeft: 70,
     justifyContent:"flex-start",
     fontWeight: "bold",
     fontSize: 15,
@@ -261,22 +258,22 @@ const styles = StyleSheet.create({
     borderRadius:30,
     overflow:'hidden',
     marginLeft:80,
-    
-    
+    marginBottom: 15
   },
   cardTexto:{
     backgroundColor:"transparent",
     flex:1,
     flexDirection:"row",
     borderRadius:5,
-    overflow: 'hidden'
-    
+    overflow: 'hidden',
+    padding: 10,
+    borderColor: "pink"
   },
   badge:{
     backgroundColor :"#B5F5B6",
     fontWeight: "bold",
-    borderWidth:1
-
+    borderWidth:1,
+    width: "auto"
   },
   textBadge:{
     flex:1,
