@@ -51,10 +51,10 @@ const searchScreen = ({ route, navigation }) => {
               <Image source={require("../../assets/logo_letras.png")} style={styles.letrasImage} />
             </Header>
               <LinearGradient 
-                colors={[colors= '#7F8C8D','#000000']} 
+                colors={[colors= '#63D471','#000000']} 
                 style={styles.LinearGradient}
-                start={{ x: 1, y: 0 }}
-                end={{ x: 0, y: 1 }}
+                start={{ x: 0, y: 1 }}
+                end={{ x: 1, y: 0 }}
                 >
                 <Text style={styles.textHeader}>
                   <H1 style={styles.estiloH1}>Resultados de la Búsqueda</H1>

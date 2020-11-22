@@ -165,12 +165,12 @@ const { apiUrl } = getEnvVars();
   ];  
   
       return (
-        <ScrollView  style={{backgroundColor: '#227d3a'}}>
+        <ScrollView  style={{backgroundColor: 'white'}}>
           <LinearGradient 
-              colors={[colors= '#7F8C8D','#000000']} 
+              colors={[colors= '#1ebd62','#198a49','#166D3B', '#000000']} 
               style={styles.LinearGradient}
-              start={{ x: 1, y: 1 }}
-              end={{ x: 0, y: 1 }}
+              start={{ x: 0, y: 1 }}
+              end={{ x: 1, y: 0 }}
           >
             <Header style={styles.header} >
               <Left> 
@@ -273,7 +273,8 @@ const { apiUrl } = getEnvVars();
     letrasImage: {
       width: width,
       height: 50,
-      marginTop: 10
+      marginTop: 10,
+      
     },
 
     logoImage: {
