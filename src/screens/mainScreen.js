@@ -238,7 +238,7 @@ const { apiUrl } = getEnvVars();
 
     text: {
       
-      fontFamily: "serif",
+      fontFamily: "sans-serif-thin",
       fontSize: 25,
       fontWeight: "bold",
       marginTop: 20,
@@ -251,7 +251,7 @@ const { apiUrl } = getEnvVars();
     },
 
     tituloLibro: {
-      fontFamily: "serif",
+      fontFamily: "sans-serif-thin",
       fontSize: 19,
       fontWeight: "bold",
       justifyContent: "center",
@@ -259,7 +259,7 @@ const { apiUrl } = getEnvVars();
     },
 
     autoryPag: {
-      fontFamily: "serif",
+      fontFamily: "sans-serif-thin",
       fontSize: 16,
       
     },

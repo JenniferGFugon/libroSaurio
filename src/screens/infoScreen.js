@@ -3,8 +3,8 @@ import react from "react";
 import { Container, Right, Content, Footer } from "native-base";
 import React, { useEffect, useState } from "react";
 
-import { StyleSheet, Text, View, Span, Image, Dimensions,FlatList, getElementById} from "react-native";
-import {Input, Title, Item, H1, Button, Header, Icon, Spinner, Card, CardItem, H3, Body, Left,Badge,bad} from "native-base";
+import { StyleSheet, Text, View, Image, Dimensions,FlatList, getElementById} from "react-native";
+import { Header, Icon, Spinner, Card,  Left,Badge,bad} from "native-base";
 
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
   },
   
   tituloLibro: {
-    fontFamily: 'serif',
+    fontFamily: 'sans-serif-thin',
     fontSize: 19,
     fontWeight: "bold",
     justifyContent: "center",
