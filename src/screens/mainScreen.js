@@ -187,9 +187,9 @@ const { apiUrl } = getEnvVars();
 
             </Header>
                  <Image source={require("../../assets/logo_letras.png")} style={styles.letrasImage}/>
-                    {dataOptions.map((dat,index) => (
-                    <Body>
-                       <Text  style = {styles.text} key={index} > {dat.titulo}</Text>
+                    {dataOptions.map((dat) => (
+                    <Body key={dat.keyItem}>
+                       <Text  style = {styles.text}  > {dat.titulo}</Text>
                    <FlatList style={{flex:1}}
                      horizontal={true}
                      data={dat.value}
