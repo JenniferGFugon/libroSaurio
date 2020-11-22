@@ -2,12 +2,13 @@
 import { Container, Content} from "native-base";
 import React, { useEffect, useState } from "react";
 
-import { StyleSheet, Text, View, Image, Dimensions,FlatList} from "react-native";
-import { Header, Spinner, Card, Body, Left} from "native-base";
+import { StyleSheet, Text, View, Span, Image, Dimensions,FlatList, getElementById} from "react-native";
+import {Input, Title, Item, H1, Button, Header, Icon, Spinner, Card, CardItem, H3, Body, Left,Badge,bad} from "native-base";
 
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
 import { LinearGradient } from 'expo-linear-gradient';
+import { color } from "react-native-reanimated";
 
 const { apiUrl  } = getEnvVars();
 
@@ -81,38 +82,60 @@ const infoScreen = ({ route,navigation }) => {
                   renderItem={({ item }) => {
                     return (
                       <View style={{backgroundColor: "#227d3a"}}>
-                            <Card>
-                            <LinearGradient 
-                              colors={[colors= '#7F8C8D','#000000']} 
+                        <LinearGradient 
+                              colors={[colors= '#227d3a','#20BF55','#01BAEF']} 
                               style={styles.LinearGradient}
                               start={{ x: 1, y: 0 }}
                               end={{ x: 0, y: 1 }}
                             >
-                                <Header style={{backgroundColor: "#227d3a"}}>
-                                  <Text style={styles.tituloLibro}>{item.title}</Text>
-                                </Header>
-                                <Body bordered>
+                            <Text style={styles.tituloLibro}>{item.title}</Text>
+
+                            <Card style={styles.cardImagen}>
+                            
                                 
                                 <Image  source={{ uri: `${item.cover}` }} style={styles.bookImage} />
-                                <Text style={styles.textoAlineadoL} > Detalles del libro:   </Text>
-                                  <Text style={styles.tags}> Año: {item.publisher_date}</Text>
-                                  <Text style={styles.tags}> Editor: {item.publisher}</Text>
-                                  <Text style={styles.tags}> Paginas: {item.pages}</Text>
-                                  <Text style={styles.tags}> Idioma: {item.language}</Text>
-                                  <Text style={styles.tags} > Categorías: </Text>
-                                  <Text style={styles.tags} > {
-                                                                  item.categories.map((category) => (
-                                                                    <Text key={category.category_id}>{category.name}</Text>
-                                                                  ))
-                                                                }   </Text>
-                                  <Text >    </Text>
-                                  <Text style={styles.texto} > Descripcion:   </Text>
-                                  <Text style={styles.texto} > {removeContent(item)} </Text>
+                                
                                   
 
-                               </Body> 
-                              </LinearGradient>                                    
                             </Card>
+                            
+                            <Card style={styles.cardTexto}>
+                            <Left style={{flex:1}} >
+                            <Text style={styles.textoAlineadoL} > Detalles del libro   </Text>
+                                  <Text style={styles.tags}> Año: </Text>
+                                  <Text style={styles.tags}> Editor: </Text>
+                                  <Text style={styles.tags}> Paginas: </Text>
+                                  <Text style={styles.tags}> Lenguaje</Text>
+                                  <Text style={styles.tags} > Categorías: </Text>
+                                  <Text  style={styles.textBadge}> {
+                                                                  item.categories.map((category) => (
+                                                                    <Badge style={styles.badge} key={category.id} >
+                                                                    <Text key={category.category_id}>{category.name}</Text>
+                                                                    </Badge>
+
+                                                                  ))
+                                                                }   </Text> 
+                                  <Text >    </Text>
+                             </Left> 
+                            <Right style={{flex:2}}>  
+
+                            <Text style={styles.tagsData} >  {item.publisher_date}</Text>
+                            <Text style={styles.tagsData}>  {item.publisher}</Text>
+                            <Text style={styles.tagsData}> {item.pages}</Text>
+                            <Text style={styles.tagsData}> {item.language}</Text>
+                            <Text style={styles.tagsData}> </Text>
+                            <Text style={styles.tagsData}> </Text>
+
+                            
+
+                             </Right> 
+                                 
+                            </Card>
+                              
+                            <Text style={styles.texto} > Descripcion   </Text>
+                                  <Text style={styles.textoContenido} > {removeContent(item)} </Text>
+                                  </LinearGradient>                                    
+
                     </View>
                     )
                 }}
@@ -163,6 +186,9 @@ const styles = StyleSheet.create({
     width: width * 0.60,
     height: height * 0.45,
     marginTop: 8,
+    borderRadius:30,
+    overflow: 'hidden'
+
   },
   
   tituloLibro: {
@@ -171,28 +197,51 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     justifyContent: "center",
     color: "#fff",
-    marginTop: 10
+    marginTop: 10,
+    textAlign:"center"
   },  
   
   texto:{
-    color:"white",
+    flex:1,
+    color:"black",
     justifyContent:"center",
     textAlign:"left",
     fontSize: 19,
-    margin: 20,
+    marginTop: 5,
+    marginBottom: 5,
+    fontWeight:"bold"
+  },
+  textoContenido:{
+    flex:1,
+    color:"black",
+    justifyContent:"center",
+    textAlign:"left",
+    fontSize: 17,
     marginTop: 5,
     marginBottom: 5,
   },
 
   tags: {
-    color:"white",
+    fontWeight: "bold",
+
+    color:"black",
     justifyContent:"center",
-    fontSize: 18,
+    fontSize: 16,
     textAlign:"left",
     marginTop: 5,
     marginBottom: 5,
+    
   },
-  
+  tagsData:{
+    
+    color:"black",
+    justifyContent:"center",
+    fontSize: 16,
+    textAlign:"right",
+    marginTop: 5,
+    marginBottom: 5,
+    marginRight:5
+  },
   textoAlineadoL:{
     color:"white",
     textAlign: "left" ,
@@ -200,8 +249,41 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 15,
     marginTop: 10,
-    marginBottom: 5
+    marginBottom: 5,
+    width:200,
+    height:40,
+    fontSize:20
   },
+  cardImagen:{
+    flex:1,
+    width: width * 0.60,
+    height: height * 0.45,
+    borderRadius:30,
+    overflow:'hidden',
+    marginLeft:80,
+    
+    
+  },
+  cardTexto:{
+    backgroundColor:"transparent",
+    flex:1,
+    flexDirection:"row",
+    borderRadius:5,
+    overflow: 'hidden'
+    
+  },
+  badge:{
+    backgroundColor :"#B5F5B6",
+    fontWeight: "bold",
+    borderWidth:1
+
+  },
+  textBadge:{
+    flex:1,
+    marginLeft:5,
+    color:"black"
+  }
+
   });
 
 export default infoScreen;

@@ -141,8 +141,8 @@ const { apiUrl } = getEnvVars();
     titulo:"Electrónica"},
     {keyItem: 7,
     value:metodologiasAgiles,
-    titulo:"Metodologías Águiles"},
-    {keyItem: 8,
+    titulo:"Metodologías Ágiles"},
+    {keyItem:8,
     value:multimedia,
     titulo:"Multimedia"},
     {keyItem: 9,
@@ -235,17 +235,17 @@ const { apiUrl } = getEnvVars();
     },
 
     text: {
-      flex:1,
+      
       fontFamily: "serif",
       fontSize: 25,
       fontWeight: "bold",
       marginTop: 20,
-      marginBottom: 10,
-      textAlign: "left" ,
-      alignContent: "flex-start",
+      marginBottom: 20,
+      color: "#fff",      
+      flexDirection:"row",
       justifyContent:"flex-start",
-      color: "#fff",
-     
+      textAlign: "left"
+      
     },
 
     tituloLibro: {
