@@ -127,15 +127,11 @@ const styles = StyleSheet.create({
       marginBottom: 10,
       textAlign: "center",
       color: "#fff",
-      
     },
 
     firstView: {
       width: width * 0.80,
       marginLeft: 25,
-
-      
-      
     },
 
     estiloView: {
@@ -151,16 +147,15 @@ const styles = StyleSheet.create({
 
     estiloCard: {
       marginHorizontal: 5,
-      paddingTop: 5,
+      paddingBottom: 5,
       alignItems: "center",
       backgroundColor: "#F5F5F5",
       borderRadius: 10,
       width: width * 0.79, 
-      height: 500,
+      height: 455,
       borderWidth: 50,   
       borderColor: "blue",
       borderStyle: "solid",   
-      
     },
 
     estiloH1: {
@@ -201,12 +196,9 @@ const styles = StyleSheet.create({
       fontFamily: "sans-serif",
       fontSize: 16,
       fontWeight: "bold",
-      alignContent: "center",
-      justifyContent:"center",
       color: "#000000",
       marginLeft:15,
-      marginRight:5
-      
+      marginRight:5,
     },
 
     autoryPag: {
