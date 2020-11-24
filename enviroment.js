@@ -3,8 +3,7 @@ import Constants from "expo-constants";
 const ENV = {
     dev:{
         apiUrl: "https://www.etnassoft.com/api/v1/get/",
-        apiImageUrl: "https://image.tmdb.org/t/p/",
-        apiImageSize: "w500"
+        
     }
 };
 
