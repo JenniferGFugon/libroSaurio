@@ -2,13 +2,8 @@
 import { Container, Content} from "native-base";
 import React, { useEffect, useState } from "react";
 
-<<<<<<< HEAD
-import { StyleSheet, Text, View, Span, Image, Dimensions,FlatList, getElementById} from "react-native";
-import {Input, Title, Item, H1, Button, Header, Icon, Spinner, Card, CardItem, H3, Body, Left, Right, Badge,bad} from "native-base";
-=======
 import { StyleSheet, Text, View, Image, Dimensions,FlatList, getElementById} from "react-native";
 import { Header, Icon, Spinner, Card,  Left,Badge,bad} from "native-base";
->>>>>>> 6ee6d5c4fd419aefa792f746b37407f7bd3fa65a
 
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
