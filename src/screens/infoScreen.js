@@ -3,11 +3,7 @@ import { Container, Content} from "native-base";
 import React, { useEffect, useState } from "react";
 
 import { StyleSheet, Text, View, Image, Dimensions,FlatList, getElementById} from "react-native";
-<<<<<<< HEAD
-import { Header, Icon, Spinner, Card,  Left,Badge,bad} from "native-base";
-=======
 import { Header, Icon, Spinner, Card,  Left,Badge,Right} from "native-base";
->>>>>>> 10ec6bebf5425209d1fae2d65a7cdb51ef51ee2e
 
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
