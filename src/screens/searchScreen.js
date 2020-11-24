@@ -92,6 +92,7 @@ const searchScreen = ({ route, navigation }) => {
                                 <Body style={{marginTop:10}}> 
                                 <Image  source={{ uri: `${item.cover}` }} style={styles.bookImage} />
                                 </Body>
+                                
                                   <H3 style={styles.tituloLibro}>{item.title}</H3>
                               </Card>
                             </Animated.View>
@@ -179,8 +180,9 @@ const styles = StyleSheet.create({
       },
 
     bookImage: {
-        width: width * 0.79,
-        height: height * 0.50,
+        marginTop:20,
+        width: width * 0.70,
+        height: height * 0.49,
     },
     letrasImage: {
         width: 222,
@@ -202,6 +204,8 @@ const styles = StyleSheet.create({
       alignContent: "center",
       justifyContent:"center",
       color: "#000000",
+      marginLeft:15,
+      marginRight:5
       
     },
 

@@ -181,13 +181,13 @@ const styles = StyleSheet.create({
     width: width * 0.60,
     height: height * 0.45,
     marginTop: 0,
-    borderRadius:30,
+    borderRadius:20,
     shadowOpacity:6
   },
   
   tituloLibro: {
     fontFamily: 'sans-serif-thin',
-    fontSize: 19,
+    fontSize: 25,
     fontWeight: "bold",
     justifyContent: "center",
     color: "#fff",
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
     flex:1,
     width: width * 0.60,
     height: height * 0.45,
-    borderRadius:30,
+    borderRadius:20,
     overflow:'hidden',
     marginLeft:80,
     marginBottom: 15,
@@ -268,6 +268,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     padding: 10,
     borderColor: "transparent",
+    borderRadius:5,
+    
     
   },
   badge:{
