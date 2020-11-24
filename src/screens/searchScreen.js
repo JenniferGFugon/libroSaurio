@@ -175,9 +175,9 @@ const styles = StyleSheet.create({
       },
 
     bookImage: {
-        marginTop:20,
+        marginTop:35,
         width: width * 0.70,
-        height: height * 0.49,
+        height: height * 0.45,
     },
     letrasImage: {
         width: 222,
