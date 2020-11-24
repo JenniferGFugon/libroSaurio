@@ -3,7 +3,11 @@ import { Container, Content} from "native-base";
 import React, { useEffect, useState } from "react";
 
 import { StyleSheet, Text, View, Image, Dimensions,FlatList, getElementById} from "react-native";
+<<<<<<< HEAD
 import { Header, Icon, Spinner, Card,  Left,Badge,bad} from "native-base";
+=======
+import { Header, Icon, Spinner, Card,  Left,Badge,Right} from "native-base";
+>>>>>>> 10ec6bebf5425209d1fae2d65a7cdb51ef51ee2e
 
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
@@ -180,15 +184,14 @@ const styles = StyleSheet.create({
   bookImage: {
     width: width * 0.60,
     height: height * 0.45,
-    marginTop: 8,
-    borderRadius:30,
-    overflow: 'hidden'
-
+    marginTop: 0,
+    borderRadius:20,
+    shadowOpacity:6
   },
   
   tituloLibro: {
     fontFamily: 'sans-serif-thin',
-    fontSize: 19,
+    fontSize: 25,
     fontWeight: "bold",
     justifyContent: "center",
     color: "#fff",
@@ -255,19 +258,23 @@ const styles = StyleSheet.create({
     flex:1,
     width: width * 0.60,
     height: height * 0.45,
-    borderRadius:30,
+    borderRadius:20,
     overflow:'hidden',
     marginLeft:80,
-    marginBottom: 15
+    marginBottom: 15,
+    borderColor:"transparent"
   },
   cardTexto:{
     backgroundColor:"transparent",
     flex:1,
     flexDirection:"row",
-    borderRadius:5,
+    borderRadius:0,
     overflow: 'hidden',
     padding: 10,
-    borderColor: "pink"
+    borderColor: "transparent",
+    borderRadius:5,
+    
+    
   },
   badge:{
     backgroundColor :"#B5F5B6",

@@ -1,16 +1,14 @@
 
-import { Container, Right, Content, Footer } from "native-base";
 import React, { useEffect, useState } from "react";
 
 import { StyleSheet, Text, View, Image, Dimensions,  Animated } from "react-native";
-import {H1, Header, Spinner, Card, CardItem, H3, Left} from "native-base";
+import {H1, Header, Spinner, Card, CardItem, H3, Left,Right, Container, Footer,Body} from "native-base";
 
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
 const { width, height } = Dimensions.get("window");
-const { apiUrl , apiImageUrl, apiImageSize } = getEnvVars();
+const { apiUrl } = getEnvVars();
 import { TouchableOpacity } from "react-native-gesture-handler";
-//import Animated from "react-native-reanimated";
 import { LinearGradient } from 'expo-linear-gradient';
 
 const searchScreen = ({ route, navigation }) => {
@@ -90,18 +88,12 @@ const searchScreen = ({ route, navigation }) => {
                           <TouchableOpacity onPress={() => navigation.navigate("infoScreen", {ID: item.ID})}>
                             <Animated.View style={styles.estiloView} style={{transform: [{translateY}] }}>
                               <Card style={styles.estiloCard}>
-                                <CardItem header style={styles.cardItem}>
-                                  <H3 style={styles.tituloLibro}>{item.title}</H3>
-                                </CardItem>                          
-                   
+                                                        
+                                <Body style={{marginTop:10}}> 
                                 <Image  source={{ uri: `${item.cover}` }} style={styles.bookImage} />
-                             
-                                <CardItem footer bordered style={styles.cardItem} >
-                                  <Text style={styles.autoryPag} > {item.pages} Páginas</Text>
-                                  <Right>
-                                    <Text style={styles.autoryPag}> Autor: {item.author}</Text>
-                                  </Right>
-                                </CardItem>
+                                </Body>
+                                
+                                  <H3 style={styles.tituloLibro}>{item.title}</H3>
                               </Card>
                             </Animated.View>
                           </TouchableOpacity>
@@ -141,6 +133,8 @@ const styles = StyleSheet.create({
     firstView: {
       width: width * 0.80,
       marginLeft: 25,
+
+      
       
     },
 
@@ -151,7 +145,8 @@ const styles = StyleSheet.create({
       backgroundColor: "white",
       borderRadius: 34,
       width: width * 0.86,  
-      height: height * 0.70,  
+      height: height * 0.90,  
+      marginTop:20
     },
 
     estiloCard: {
@@ -161,7 +156,7 @@ const styles = StyleSheet.create({
       backgroundColor: "#F5F5F5",
       borderRadius: 10,
       width: width * 0.79, 
-      height: "auto",
+      height: 500,
       borderWidth: 50,   
       borderColor: "blue",
       borderStyle: "solid",   
@@ -185,9 +180,9 @@ const styles = StyleSheet.create({
       },
 
     bookImage: {
-        width: width * 0.50,
-        height: height * 0.45,
-        marginLeft: 5,        
+        marginTop:20,
+        width: width * 0.70,
+        height: height * 0.49,
     },
     letrasImage: {
         width: 222,
@@ -203,11 +198,14 @@ const styles = StyleSheet.create({
     },
 
     tituloLibro: {
-      fontFamily: "sans-serif-thin",
+      fontFamily: "sans-serif",
       fontSize: 16,
       fontWeight: "bold",
       alignContent: "center",
+      justifyContent:"center",
       color: "#000000",
+      marginLeft:15,
+      marginRight:5
       
     },
 
@@ -219,7 +217,12 @@ const styles = StyleSheet.create({
     },
 
     cardItem: {
-      backgroundColor: "transparent",
+      
+      fontWeight:"bold",
+      alignContent:"center",
+      backgroundColor:"transparent",
+      textAlign:"center"
+
     }
 
   });
