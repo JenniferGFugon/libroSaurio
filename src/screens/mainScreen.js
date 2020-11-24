@@ -186,7 +186,7 @@ const { apiUrl } = getEnvVars();
               </Right>
 
             </Header>
-                 <Image source={require("../../assets/logo_letras.png")} style={styles.letrasImage}/>
+                 <Text style={styles.letras}>LIBROSAURIO</Text>
                     {dataOptions.map((dat) => (
                     <Body key={dat.keyItem}>
                        <Text  style = {styles.text}  > {dat.titulo}</Text>
@@ -235,7 +235,6 @@ const { apiUrl } = getEnvVars();
     },
 
     text: {
-      
       fontFamily: "sans-serif-thin",
       fontSize: 25,
       fontWeight: "bold",
@@ -270,11 +269,15 @@ const { apiUrl } = getEnvVars();
 
     },
 
-    letrasImage: {
+    letras: {
       width: width,
-      height: 50,
-      marginTop: 10,
-      
+      marginTop: 15,
+      marginBottom: 10,
+      color: "#26a31f",
+      textAlign: "center",
+      fontSize: 51,
+      fontWeight: "bold",
+      fontStyle: "italic"
     },
 
     logoImage: {
