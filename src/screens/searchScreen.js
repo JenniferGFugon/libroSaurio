@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
       backgroundColor: "#F5F5F5",
       borderRadius: 10,
       width: width * 0.79, 
-      height: 455,
+      height: 500,
       borderWidth: 50,   
       borderColor: "blue",
       borderStyle: "solid",   
@@ -175,9 +175,9 @@ const styles = StyleSheet.create({
       },
 
     bookImage: {
-        marginTop:20,
+        marginTop:53,
         width: width * 0.70,
-        height: height * 0.49,
+        height: height * 0.45,
     },
     letrasImage: {
         width: 222,
