@@ -1,14 +1,12 @@
 
-import { Container, Content} from "native-base";
 import React, { useEffect, useState } from "react";
 
-import { StyleSheet, Text, View, Image, Dimensions,FlatList, getElementById} from "react-native";
-import { Header, Icon, Spinner, Card,  Left,Badge,Right} from "native-base";
+import { StyleSheet, Text, View, Image, Dimensions,FlatList} from "react-native";
+import { Header, Spinner, Card,  Left,Badge,Right,Container,Content} from "native-base";
 
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
 import { LinearGradient } from 'expo-linear-gradient';
-import { color } from "react-native-reanimated";
 
 const { apiUrl  } = getEnvVars();
 
@@ -18,7 +16,7 @@ const infoScreen = ({ route,navigation }) => {
     const { ID } = route.params;
     const [book, setBook] = useState(null);
     const [error, setError] = useState(false);
-    var contenido ="";
+    let contenido ="";
     
     async function getBookInfo() {
         try {

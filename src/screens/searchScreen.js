@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 import { StyleSheet, Text, View, Image, Dimensions,  Animated } from "react-native";
-import {H1, Header, Spinner, Card, CardItem, H3, Left,Right, Container, Footer,Body} from "native-base";
+import {H1, Header, Spinner, Card, H3, Left, Container,Body} from "native-base";
 
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";

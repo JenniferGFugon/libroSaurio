@@ -1,4 +1,4 @@
-import { Body, Right } from "native-base";
+
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image, Dimensions,FlatList ,ScrollView} from "react-native";
 import {
@@ -9,11 +9,10 @@ import {
   Icon,
   Spinner,
   Card,
-  CardItem,
- 
+  Body,
+  Right,
   Left,
-  
-  
+
 } from "native-base";
 import backend from "../api/backend";
 import getEnvVars from "../../enviroment";
