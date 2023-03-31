@@ -1,4 +1,3 @@
-import React, {Component} from 'react';
 import { StyleSheet} from 'react-native';
 import mainScreen from "./src/screens/mainScreen";
 import { NavigationContainer} from '@react-navigation/native';
